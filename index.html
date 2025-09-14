@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F I O R I - El Arte en tus Uñas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Playfair Display (Serif) & Montserrat (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FFFBFB; /* Un blanco ligeramente cálido */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .gold-accent {
+            color: #D4AF37;
+        }
+        .gold-bg {
+            background-color: #D4AF37;
+        }
+        .soft-pink-bg {
+            background-color: #F8E8E8;
+        }
+        /* Animation on scroll */
+        .reveal {
+            position: relative;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+        .reveal.active {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+        /* Modal Styles */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        /* Spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #D4AF37;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-wider text-gray-900">F I O R I</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#services" class="hover:text-[#D4AF37] transition-colors">Servicios</a>
+                <a href="#gallery" class="hover:text-[#D4AF37] transition-colors">Galería</a>
+                <a href="#pricing" class="hover:text-[#D4AF37] transition-colors">Precios</a>
+                <a href="#about" class="hover:text-[#D4AF37] transition-colors">Sobre Mí</a>
+                <a href="#contact" class="gold-bg text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all shadow-md">Reservar Cita</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#services" class="block py-2 hover:text-[#D4AF37]">Servicios</a>
+            <a href="#gallery" class="block py-2 hover:text-[#D4AF37]">Galería</a>
+            <a href="#pricing" class="block py-2 hover:text-[#D4AF37]">Precios</a>
+            <a href="#about" class="block py-2 hover:text-[#D4AF37]">Sobre Mí</a>
+            <a href="#contact" class="block mt-4 text-center gold-bg text-white px-6 py-2 rounded-full">Reservar Cita</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('https://plus.unsplash.com/premium_photo-1682092544868-6e57d9867744?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="text-center text-white z-10 p-4 reveal active">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-4">El arte de la perfección</h1>
+            <p class="text-xl md:text-2xl mb-8 font-light tracking-wider">Diseños que reflejan tu estilo único.</p>
+            <a href="#contact" class="gold-bg text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg transform hover:scale-105">
+                Reservar Cita Ahora
+            </a>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-16 md:py-24">
+
+        <!-- Services Section -->
+        <section id="services" class="mb-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold">Nuestros Servicios</h2>
+                <p class="text-gray-600 mt-2">Calidad y cuidado en cada detalle.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Cards -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center reveal transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                    <i class="fas fa-hand-sparkles text-4xl gold-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Manicure</h3>
+                    <p class="text-gray-600 flex-grow">Desde un esmaltado clásico hasta un tratamiento spa completo para unas manos suaves y perfectas.</p>
+                </div>
+                 <div class="bg-white p-8 rounded-2xl shadow-lg text-center reveal transform hover:-translate-y-2 transition-transform duration-300 flex flex-col" style="transition-delay: 400ms;">
+                    <i class="fas fa-shield-alt text-4xl gold-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Cuidado de Uñas</h3>
+                    <p class="text-gray-600 flex-grow">Tratamientos fortalecedores y reparadores para mantener tus uñas naturales sanas y fuertes.</p>
+                </div>
+                 <div class="bg-white p-8 rounded-2xl shadow-lg text-center reveal transform hover:-translate-y-2 transition-transform duration-300 flex flex-col" style="transition-delay: 500ms;">
+                    <i class="fas fa-spa text-4xl gold-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Tratamientos Spa</h3>
+                    <p class="text-gray-600 flex-grow">Exfoliación, hidratación y masajes para una experiencia de relajación y belleza total.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold">Galería de Inspiración</h2>
+                <p class="text-gray-600 mt-2">Trabajos reales para clientas reales.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="grid gap-4">
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img4.jpg" alt="Diseño de uñas 1" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img9.jpg" alt="Diseño de uñas 2" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
+                </div>
+                <div class="grid gap-4">
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img8.jpg" alt="Diseño de uñas 3" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img6.jpg" alt="Diseño de uñas 4" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
+                </div>
+                <div class="grid gap-4">
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img5.jpg" alt="Diseño de uñas 5" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img2.jpg" alt="Diseño de uñas 6" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
+                </div>
+                <div class="grid gap-4">
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img7.jpg" alt="Diseño de uñas 7" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img3.jpg" alt="Diseño de uñas 8" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
+                </div>
+                <div class="grid gap-4">
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img10.jpg" ></div>
+                </div>
+                <div class="grid gap-4">
+                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img1.jpg" alt="Diseño de uñas 7" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing, About, Testimonials, Contact Sections remain the same -->
+        <!-- Pricing Section -->
+        <section id="pricing" class="mb-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold">Lista de Precios</h2>
+                <p class="text-gray-600 mt-2">Transparencia y calidad en cada servicio.</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg reveal">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Gel Semipermanente</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex justify-between"><span>ㅤㅤ• 1 y 2 Tonos.</span> <span class="font-semibold">$120</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• 3 y 4 Tonos.</span> <span class="font-semibold">$130</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Rubber</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex justify-between"><span>ㅤㅤ• 1 Tono (Base).</span> <span class="font-semibold">$200</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Más de un tono por mano.</span> <span class="font-semibold">$15</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Diseños Por Uña.</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex justify-between"><span>ㅤㅤ• Gel Semipermanente.</span> <span class="font-semibold">$190</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• French.</li>
+                            <li class="flex justify-between"><span>ㅤㅤㅤㅤ- Uña Corta.</span> <span class="font-semibold">$10</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤㅤㅤ- Uña Mediana.</span> <span class="font-semibold">$15</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤㅤㅤ- Uña Larga.</span> <span class="font-semibold">$20</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Babyboomer.</span> <span class="font-semibold">$10</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Mano Alzada.</span> <span class="font-semibold">Desde $5 en adelante.</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Efecto Espejo.</span> <span class="font-semibold">$10</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Decoración.</span> <span class="font-semibold">$10</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Efecto 3D.</span> <span class="font-semibold">Desde $7 en adelante.</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Acrilico.</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex justify-between"><span>ㅤㅤ• Largo 1</span> <span class="font-semibold">$190</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Largo 2</span> <span class="font-semibold">$210</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Largo 3</span> <span class="font-semibold">$230</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Largo 4</span> <span class="font-semibold">$250</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Largo 5</span> <span class="font-semibold">$270</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Soft Gel.</h3>
+                         <ul class="space-y-3 text-gray-700">
+                            <li class="flex justify-between"><span>ㅤㅤ• Tip Corto.</span> <span class="font-semibold">$160</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Tip Mediano.</span> <span class="font-semibold">$180</span></li>
+                            <li class="flex justify-between"><span>ㅤㅤ• Tip Largo.</span> <span class="font-semibold">$200</span></li>
+                         </ul>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Retiro de mi trabajo.ㅤㅤㅤㅤ$80</h3>
+                         <ul class="space-y-3 text-gray-700">
+                            <li class="flex justify-between"><span>ㅤㅤ• Si es trabajo externo tiene costo extra. <br>ㅤㅤ(Aplica en todos los servicios).</span></li>
+                         </ul>
+                    </div>
+                </div>
+                 <p class="text-center text-sm text-gray-500 mt-8 italic">* Todos los servicios incluyen manicura, crema hidratante y cuentan con una semana de garantía. ¡Se agenda cita sólo con anticipo!</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="mb-24 bg-white p-8 md:p-16 rounded-2xl shadow-lg reveal">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                <div class="md:col-span-1">
+                    <img src="https://placehold.co/400x400/F8E8E8/333333?text=Tu+Foto" alt="Foto de la dueña" class="rounded-full w-full max-w-[300px] mx-auto shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/400x400';">
+                </div>
+                <div class="md:col-span-2 text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Conoce a la Artista</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">¡Hola! Soy [Tu Nombre], y mi pasión es transformar tus uñas en pequeñas obras de arte. Con más de [X] años de experiencia, me dedico a ofrecer un servicio de la más alta calidad, utilizando solo los mejores productos y manteniendo los más estrictos estándares de higiene.</p>
+                    <p class="text-gray-600 leading-relaxed">Mi filosofía es simple: cada clienta es única y merece un diseño que refleje su personalidad. Me encanta escuchar tus ideas y trabajar juntas para crear algo que te haga sentir increíble. ¡Espero verte pronto!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="mb-24">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold">Clientas Felices</h2>
+                <p class="text-gray-600 mt-2">Lo que dicen de nuestro trabajo.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg reveal">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1685903772095-f07172808761?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzdWFyaW9zfGVufDB8fDB8fHww" alt="Cliente 1" class="w-16 h-16 rounded-full mr-4" onerror="this.onerror=null;this.src='https://placehold.co/100x100';">
+                        <div>
+                            <h4 class="font-bold text-lg">Sofía L.</h4>
+                            <div class="text-[#D4AF37]">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"¡El mejor lugar de uñas! Siempre salgo encantada con el resultado. El trato es increíble y la atención al detalle es inigualable."</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXN1YXJpb3N8ZW58MHx8MHx8fDA%3D" alt="Cliente 2" class="w-16 h-16 rounded-full mr-4" onerror="this.onerror=null;this.src='https://placehold.co/100x100';">
+                        <div>
+                            <h4 class="font-bold text-lg">Mariana G.</h4>
+                            <div class="text-[#D4AF37]">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Profesionalismo y creatividad al 100%. Siempre entiende mis ideas y las mejora. Mis uñas nunca habían estado tan sanas y bonitas."</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg reveal" style="transition-delay: 200ms;">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXN1YXJpb3N8ZW58MHx8MHx8fDA%3D" alt="Cliente 3" class="w-16 h-16 rounded-full mr-4" onerror="this.onerror=null;this.src='https://placehold.co/100x100';">
+                        <div>
+                            <h4 class="font-bold text-lg">Valeria R.</h4>
+                            <div class="text-[#D4AF37]">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"¡Súper recomendado! El ambiente es muy relajante y el trabajo es impecable. Ya no voy a ningún otro lado."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="soft-pink-bg p-8 md:p-16 rounded-2xl reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold">Agenda tu Cita</h2>
+                <p class="text-gray-600 mt-2">Rellena el formulario y te contactaré para confirmar.</p>
+            </div>
+            <form action="#" method="POST" class="max-w-xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <input type="text" placeholder="Nombre Completo" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
+                    <input type="tel" placeholder="Teléfono / WhatsApp" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
+                </div>
+                <div class="mb-6">
+                    <select class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
+                        <option value="" disabled selected>Selecciona un servicio...</option>
+                        <option value="manicure">Manicure</option>
+                        <option value="pedicure">Pedicure</option>
+                        <option value="acrilicas">Uñas Acrílicas</option>
+                        <option value="gel">Gel</option>
+                        <option value="diseno">Diseño Personalizado</option>
+                    </select>
+                </div>
+                <div class="mb-6">
+                     <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Fecha deseada" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="gold-bg text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg transform hover:scale-105">
+                        Enviar Solicitud
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h3 class="text-3xl font-bold mb-4">[Nombre del Negocio]</h3>
+            <p class="mb-6">Tu dirección, Ciudad, Estado</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-2xl hover:text-[#D4AF37] transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-[#D4AF37] transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-2xl hover:text-[#D4AF37] transition-colors"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p class="text-sm text-gray-400">&copy; 2025 [Nombre del Negocio]. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/7341368316" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform">
+        <i class="fab fa-whatsapp text-4xl"></i>
+    </a>
+
+    <script>
+        // --- Standard Page Scripts ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+        const header = document.getElementById('header');
+        window.onscroll = function() {
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
+            } else {
+                header.classList.add('py-4');
+                header.classList.remove('py-2');
+            }
+        };
+        document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = this.querySelector('input[type="text"]').value;
+    const telefono = this.querySelector('input[type="tel"]').value;
+    const servicio = this.querySelector('select').value;
+    const fecha = this.querySelector('input[type="date"], input[placeholder="Fecha deseada"]').value;
+
+    const mensaje = `Hola, quiero agendar una cita:\n\nNombre: ${nombre}\nTeléfono: ${telefono}\nServicio: ${servicio}\nFecha deseada: ${fecha}`;
+    const url = `https://wa.me/7341368316?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+});
+    </script>
+
+</body>
+</html>
