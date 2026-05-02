@@ -1,441 +1,635 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F I O R I - El Arte en tus Uñas</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Playfair Display (Serif) & Montserrat (Sans-serif) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA | Experiencia Definitiva</title>
 
-    <!--Favicon-->
-    <link rel="icon" href="./img/favicon.png" type="image/png">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
-    <!--CONTENIDO MOSTRADO AL COMPRARTIR URL-->
-    <!-- Título de la página -->
-    <meta property="og:title" content="F I O R I - El Arte en tus Uñas">
-    <!-- Descripción que se verá al compartir -->
-    <meta property="og:description" content="Mi filosofía es simple: cada clienta es única y merece un diseño que refleje su personalidad. Me encanta escuchar tus ideas y trabajar juntas para crear algo que te haga sentir increíble. ¡Espero verte pronto!">
-    <!-- Imagen que se mostrará -->
-    <meta property="og:image" content="./img/favicon.png">
-    <!-- URL de la página -->
-    <meta property="og:url" content="https://lmds13.github.io/FIORY/">
-    <!-- Tipo de contenido -->
-    <meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
 
+<style>
+:root{--bg:#F5F2ED;--dark:#1C1C1C;--muted:#6B6661}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden}
 
-    <!-- Custom Styles -->
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #FFFBFB; /* Un blanco ligeramente cálido */
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-        }
-        .gold-accent {
-            color: #D4AF37;
-        }
-        .gold-bg {
-            background-color: #D4AF37;
-        }
-        .soft-pink-bg {
-            background-color: #F8E8E8;
-        }
-        /* Animation on scroll */
-        .reveal {
-            position: relative;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 1s ease;
-        }
-        .reveal.active {
-            transform: translateY(0px);
-            opacity: 1;
-        }
-        /* Modal Styles */
-        .modal-overlay {
-            transition: opacity 0.3s ease;
-        }
-        .modal-content {
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        /* Spinner */
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 4px solid #D4AF37;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        input, select {
-    box-shadow: inset 1px 3px 3px rgba(0,0,0,0.1);
+/* PRELOADER PREMIUM */
+#preloader {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: #F5F2ED; z-index: 99999; display: flex; align-items: center; justify-content: center;
 }
-    </style>
+.preloader-content { text-align: center; }
+.preloader-content h1 {
+  font-family: 'Playfair Display', serif; font-size: 5.5rem; letter-spacing: 0.25em;
+  color: #1C1C1C; margin-bottom: 2.5rem; opacity: 0;
+}
+.loading-bar-container {
+  width: 280px; height: 1px; background: rgba(28,28,28,0.15); margin: 0 auto; position: relative; overflow: hidden;
+}
+.loading-bar {
+  position: absolute; top: 0; left: 0; height: 100%; width: 0%; 
+  background: linear-gradient(to right, #1C1C1C, #8C6F4E);
+  animation: loading 3.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes loading { to { width: 100%; } }
+
+body.preloader-active { overflow: hidden; height: 100vh; }
+
+#three-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.85}
+
+.section{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:120px 24px}
+.layer{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.parallax-bg{position:absolute;width:120%;height:120%;top:-10%;left:-10%;background-size:cover;background-position:center}
+.img{width:50%;border-radius:20px;box-shadow:0 40px 80px rgba(0,0,0,.15)}
+.text{max-width:760px}
+.btn{background:black;color:white;padding:14px 36px;border-radius:999px;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:.35s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px) scale(1.05)}
+.cursor{width:18px;height:18px;border:1px solid black;border-radius:50%;position:fixed;pointer-events:none;z-index:999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.menu-card{position:relative;cursor:pointer;overflow:hidden}
+.menu-card img{border-radius:16px;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.menu-card:hover img{transform:scale(1.12)}
+.menu-overlay{position:absolute;bottom:0;left:0;width:100%;padding:22px;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);color:white;opacity:0;transform:translateY(20px);transition:.6s cubic-bezier(.16,1,.3,1)}
+.menu-card:hover .menu-overlay{opacity:1;transform:translateY(0)}
+.sticky-cta{position:fixed;bottom:28px;right:28px;z-index:999}
+.reservation-box{background:white;padding:48px 40px;border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.12);max-width:460px;width:100%}
+.badge{font-size:10px;letter-spacing:.35em;text-transform:uppercase;opacity:.6}
+.hr{height:1px;background:rgba(0,0,0,.08);margin:32px 0}
+.quote{font-style:italic; font-size: 1.15rem; line-height: 1.4;}
+.small{font-size:15px;color:#6b6661}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+
+/* Sección Huerto */
+#huerto .huerto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+#huerto .huerto-image { border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+#huerto .huerto-content h2 { font-size: 3.2rem; line-height: 1.05; font-family: 'Playfair Display', serif; }
+#huerto .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem; margin-top: 3rem; }
+#huerto .icon-item { text-align: center; }
+#huerto .icon-circle { width: 64px; height: 64px; background: #f5f2ed; border-radius: 9999px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+
+/* Nueva sección Testimonios - Rediseñada */
+#testimonios .testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+#testimonios .testimonial-card {
+  background: white;
+  padding: 2.25rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transition: transform 0.4s ease;
+}
+#testimonios .testimonial-card:hover {
+  transform: translateY(-4px);
+}
+#testimonios .quote {
+  font-style: italic;
+  line-height: 1.45;
+  color: #1C1C1C;
+}
+
+@media (max-width: 900px) {
+  #huerto .huerto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section { padding: 80px 20px; }
+  .preloader-content h1 { font-size: 3.8rem; }
+}
+
+/*ESCENES*/
+.text-scenes p{
+  color: #f9f5ef;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.text-scenes h2{
+  color: #e4c593;
+  text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+}
+
+/* Capa de sombra para legibilidad */
+.vignette {
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ========== REGLAS RESPONSIVE ADICIONALES (SIN MODIFICAR LOS ESTILOS ORIGINALES) ========== */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .img {
+    width: 85vw;
+    max-width: 400px;
+  }
+  .reservation-box {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+  .sticky-cta {
+    bottom: 20px;
+    right: 20px;
+  }
+  .sticky-cta .btn {
+    padding: 12px 28px;
+    font-size: 10px;
+  }
+  /* Ajustes para escenas: texto superpuesto con fondo oscuro */
+  #scene1 #text1, #scene2 #text2, #scene3 #text3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 1.25rem 3rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    text-align: center;
+    z-index: 2;
+  }
+  #scene1 #img1, #scene2 #img2, #scene3 #img3 {
+    z-index: 0;
+  }
+  #scene1 .vignette, #scene2 .vignette, #scene3 .vignette {
+    display: none; /* Ocultamos el vignette original para no interferir */
+  }
+  /* Aseguramos que el texto de las escenas sea legible */
+  .text-scenes h2 {
+    font-size: 2rem !important;
+  }
+  .text-scenes p {
+    font-size: 0.9rem !important;
+  }
+  /* Testimonios: forzar una sola columna en móviles */
+  #testimonios .testimonios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .section {
+    padding: 70px 16px;
+  }
+  .btn {
+    padding: 12px 24px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+  .reservation-box {
+    padding: 28px 20px;
+  }
+  .sticky-cta {
+    bottom: 16px;
+    right: 16px;
+  }
+  .sticky-cta .btn {
+    padding: 10px 20px;
+    font-size: 9px;
+  }
+  /* Escenas en pantallas muy pequeñas */
+  #scene1 #text1, #scene2 #text2, #scene3 #text3 {
+    padding: 2rem 1rem 2.5rem;
+  }
+  .text-scenes h2 {
+    font-size: 1.8rem !important;
+  }
+  .text-scenes p {
+    font-size: 0.85rem !important;
+  }
+  /* Testimonios en móviles pequeños */
+  #testimonios .testimonios-grid {
+    gap: 1.5rem;
+  }
+}
+</style>
 </head>
-<body class="text-gray-800">
 
-    <!-- Header & Navigation -->
-    <header id="header" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-wider text-gray-900">F I O R I</a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#services" class="hover:text-[#D4AF37] transition-colors">Servicios</a>
-                <a href="#gallery" class="hover:text-[#D4AF37] transition-colors">Galería</a>
-                <a href="#pricing" class="hover:text-[#D4AF37] transition-colors">Precios</a>
-                <a href="#about" class="hover:text-[#D4AF37] transition-colors">Sobre Mí</a>
-                <a href="#contact" class="gold-bg text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all shadow-md">Reservar Cita</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden text-2xl">
-                <i class="fas fa-bars"></i>
-            </button>
+<body class="preloader-active">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-content">
+    <h1>AURA</h1>
+    <div class="loading-bar-container">
+      <div class="loading-bar"></div>
+    </div>
+  </div>
+</div>
+
+<canvas id="three-bg"></canvas>
+<div class="cursor"></div>
+
+<!-- HERO -->
+<section class="section" id="hero">
+  <div class="text text-center">
+    <div class="badge">Una mesa, doce historias.</div>
+    <h1 class="text-7xl md:text-8xl leading-none mt-4">AURA</h1>
+    <p class="mt-6 text-xl text-gray-700">En el corazón de Morelos, la cocina de autor encuentra su estado más puro. Un viaje sensorial sin prisa.</p>
+  </div>
+</section>
+
+<!-- SCENE 1-->
+<section class="section" id="scene1">
+  <div class="parallax-bg" id="bg1" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400')"></div>
+  <div class="layer" id="img1"><img class="img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200"></div>
+  <div class="layer" id="text1"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">El Legado de la Tierra</h2><p class="mt-4">La excelencia no se construye, se cultiva. Todo comienza con la búsqueda incansable del producto en su estado más puro, respetando los ciclos naturales que dictan nuestra propuesta.</p></div></div>
+</section>
+
+<!-- DEL HUERTO AL PLATILLO -->
+<section class="section" id="huerto">
+  <div class="huerto-grid">
+    <div class="huerto-image">
+      <img src="https://images.unsplash.com/photo-1673252848144-46e11611527e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Plantas en macetas" class="w-full h-auto">
+    </div>
+    <div class="huerto-content">
+      <div class="badge">Del huerto al platillo</div>
+      <h2 class="mt-4">La Geografía del Sabor.</h2>
+      <div class="mt-8 space-y-6 text-gray-700 leading-relaxed">
+        <p>Entendemos el lujo como la cercanía máxima entre la tierra y el comensal. Nuestra despensa se limita a un radio de 40 kilómetros, donde cada semilla es seleccionada por su linaje y cada cosecha se realiza bajo el criterio estricto de la madurez óptima.</p>
+        <p>No buscamos ingredientes, buscamos la expresión más honesta de nuestro entorno, eliminando cualquier intermediario que pueda diluir la frescura o la historia de lo que servimos.</p>
+      </div>
+      <div class="icon-grid">
+        <div class="icon-item"><div class="icon-circle">🌱</div><p class="font-medium text-sm">Cosecha diaria</p><p class="small">Ritmos naturales. Sin mediadores.</p></div>
+        <div class="icon-item"><div class="icon-circle">🔍</div><p class="font-medium text-sm">Selección</p><p class="small">La curaduría de la tierra. Solo lo excepcional.</p></div>
+        <div class="icon-item"><div class="icon-circle">❄️</div><p class="font-medium text-sm">Preservación</p><p class="small">Pureza intacta. La esencia del producto.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 2-->
+<section class="section" id="scene2">
+  <div class="parallax-bg" id="bg2" style="background-image:url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1400')"></div>
+  <div class="layer" id="img2"><img class="img" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1200"></div>
+  <div class="layer" id="text2"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">La Precisión de la Técnica.</h2><p class="mt-4">El arte de intervenir sin invadir. Aplicamos rigor técnico para desnudar la esencia del producto, elevando sus virtudes naturales mediante procesos que honran la paciencia y el detalle.</p></div></div>
+</section>
+
+<!-- SOBRE EL CHEF -->
+<section class="section" id="chef">
+  <div class="grid-2 max-w-6xl mx-auto items-center gap-16">
+    <div class="menu-card">
+      <img src="https://plus.unsplash.com/premium_photo-1687697860916-b05b982decbc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chef Mateo Rivera" class="img">
+      <div class="menu-overlay">Chef Mateo Rivera</div>
+    </div>
+    <div class="text-left">
+      <div class="badge">Dirección Gastronómica</div>
+      <h2 class="text-5xl mt-2 leading-tight">Mateo Rivera</h2>
+      <p class="mt-6 text-gray-600 leading-relaxed">Tras años de perfeccionamiento en las cocinas más influyentes del mundo, Mateo Rivera consolida en AURA una visión donde la vanguardia se rinde ante la sencillez.</p>
+      <p class="mt-6 text-gray-600 leading-relaxed">Su cocina se aleja del artificio para centrarse en la armonía compositiva y el respeto absoluto por la herencia culinaria. Para Rivera, cada menú es un estudio sobre la textura y la memoria, ejecutado con la disciplina de quien entiende que la verdadera sofisticación reside en lo esencial.</p>
+      <div class="mt-10 grid grid-cols-2 gap-8 text-sm">
+        <div><p class="font-medium">Experiencia</p><p class="small">Noma • Mugaritz • DiverXO • Pujol</p></div>
+        <div><p class="font-medium">Reconocimientos</p><p class="small">Latin America's 50 Best Restaurants • Premio Nacional de Gastronomía 2025</p></div>
+      </div>
+      <p class="quote mt-12">"La técnica es el lenguaje, pero el producto es el mensaje. Cocinamos para despertar la memoria del paladar".</p>
+      <p class="small mt-3">— Mateo Rivera</p>
+    </div>
+  </div>
+</section>
+
+<!-- LA MESA -->
+<section class="section bg-white">
+  <div class="max-w-5xl mx-auto text-center">
+    <div class="badge">Intimidad Arquitectónica</div>
+    <h2 class="text-5xl mt-3">El Silencio del Anfitrión</h2>
+    <p class="mt-6 text-gray-600 max-w-2xl mx-auto">Hemos diseñado un entorno donde nada distrae de lo principal. Un refugio de minimalismo cálido concebido para preservar la privacidad de nuestros doce invitados. Cada textura del mobiliario, la iluminación dirigida y la acústica del espacio han sido curadas para fomentar una conexión ininterrumpida con la gastronomía. Aquí, el tiempo se detiene en favor de la pausa y el disfrute pausado.</p>
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1541856644905-bd40b138cbbd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-2xl"><div class="menu-overlay">Sala principal • 12 plazas</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800" class="rounded-2xl"><div class="menu-overlay">Terraza privada • Vista al huerto</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1730855793920-125667a8536d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-2xl"><div class="menu-overlay">Cava de vinos • 180 referencias</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 3-->
+<section class="section" id="scene3">
+  <div class="parallax-bg" id="bg3" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400')"></div>
+  <div class="layer" id="img3"><img class="img" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200"></div>
+  <div class="layer" id="text3"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">Estética de lo Efímero</h2><p class="mt-4">La última etapa de nuestra propuesta es la entrega visual y sensorial. Un lenguaje propio donde cada composición busca el equilibrio perfecto entre la forma, el aroma y el deleite.</p></div></div>
+</section>
+
+<!-- MARIDAJE -->
+<section class="section">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="badge">Experiencia completa</div>
+    <h2 class="text-5xl mt-3">Maridaje de autor</h2>
+    <p class="mt-6 text-gray-600">Cada plato tiene su compañero perfecto, seleccionado por nuestro sommelier.</p>
+    <div class="mt-16 grid-2 gap-12 items-center">
+      <img src="https://plus.unsplash.com/premium_photo-1677327747000-2ad8ccfd288d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img rounded-3xl">
+      <div class="text-left space-y-8">
+        <div><h3 class="text-2xl">Esencia de Jamaica y Guayaba</h3><p class="small mt-2">Nuestra propuesta líquida se aleja de las convenciones para explorar la botánica local. Destaca nuestra infusión de flor de Jamaica seleccionada, clarificada y ensamblada con una reducción de guayaba de monte. Esta preparación busca el equilibrio entre la acidez vibrante y la untuosidad frutal, diseñada específicamente para limpiar el paladar y subrayar las notas terrosas de nuestros platos de temporada. Es una interpretación contemporánea de los sabores de nuestra tierra, servida a la temperatura exacta para preservar su complejidad aromática.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPORADA ACTUAL -->
+<section class="section bg-[#1C1C1C] text-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="badge text-white opacity-70">Abril - Mayo 2026</div>
+      <h2 class="text-5xl mt-3">Temporada actual</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1588791174744-7e9bf4378277?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-2xl"><div class="menu-overlay">Langosta • Espárragos • Flor de calabaza</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800" class="rounded-2xl"><div class="menu-overlay">Cordero lechal • Mole negro • Hierbas silvestres</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=800" class="rounded-2xl"><div class="menu-overlay">Chocolate Oaxaqueño • Frutos rojos • Lavanda</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS - NUEVO DISEÑO -->
+<section class="section" id="testimonios">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="badge">Experiencias reales</div>
+    <h2 class="text-4xl mt-3">Lo que dicen nuestros comensales</h2>
+    
+    <div class="testimonios-grid mt-16">
+      <div class="testimonial-card">
+        <p class="quote">"Una de las mejores experiencias gastronómicas que he tenido. Cada plato cuenta una historia y el servicio es impecable. Sin duda volveré."</p>
+        <div class="mt-8">
+          <p class="font-medium">Laura Mendoza</p>
+          <p class="small">CDMX</p>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#services" class="block py-2 hover:text-[#D4AF37]">Servicios</a>
-            <a href="#gallery" class="block py-2 hover:text-[#D4AF37]">Galería</a>
-            <a href="#pricing" class="block py-2 hover:text-[#D4AF37]">Precios</a>
-            <a href="#about" class="block py-2 hover:text-[#D4AF37]">Sobre Mí</a>
-            <a href="#contact" class="block mt-4 text-center gold-bg text-white px-6 py-2 rounded-full">Reservar Cita</a>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="quote">"El equilibrio perfecto entre técnica, producto local y emoción. Una velada inolvidable. AURA redefine lo que significa cenar bien."</p>
+        <div class="mt-8">
+          <p class="font-medium">Carlos Rivera</p>
+          <p class="small">Cuernavaca</p>
         </div>
-    </header>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('https://plus.unsplash.com/premium_photo-1682092544868-6e57d9867744?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-        <div class="absolute inset-0 bg-black/40"></div>
-        <div class="text-center text-white z-10 p-4 reveal active">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-4">El arte de la perfección</h1>
-            <p class="text-xl md:text-2xl mb-8 font-light tracking-wider">Diseños que reflejan tu estilo único.</p>
-            <a href="#contact" class="gold-bg text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg transform hover:scale-105">
-                Reservar Cita Ahora
-            </a>
-        </div>
-    </section>
+<!-- MENÚ -->
+<section class="section flex flex-col items-center">
+  <h2 class="text-5xl mb-16">Menú degustación</h2>
+  <div class="menu-grid max-w-5xl w-full">
+    <div class="menu-card"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800"><div class="menu-overlay">Filete • Trufa • Reducción</div></div>
+    <div class="menu-card"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=800"><div class="menu-overlay">Salmón • Cítricos • Hierbas</div></div>
+    <div class="menu-card"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=800"><div class="menu-overlay">Postre • Chocolate • Lavanda</div></div>
+  </div>
+</section>
 
-    <main class="container mx-auto px-6 py-16 md:py-24">
+<!-- RESERVAS -->
+<section class="section" id="cta">
+  <div class="reservation-box">
+    <div class="text-center mb-10">
+      <div class="badge">Disponibilidad Restringida</div>
+      <h2 class="text-4xl mt-3">Asegure su Estancia</h2>
+    </div>
+    <div class="space-y-8">
+      <div>
+        <label class="block text-xs tracking-widest mb-2 text-gray-500">FECHA</label>
+        <input id="date" type="date" class="w-full border border-gray-200 focus:border-black rounded-2xl px-5 py-4 text-lg outline-none transition-colors">
+      </div>
+      <div>
+        <label class="block text-xs tracking-widest mb-2 text-gray-500">HORARIO</label>
+        <select id="time" class="w-full border border-gray-200 focus:border-black rounded-2xl px-5 py-4 text-lg outline-none transition-colors bg-white"></select>
+      </div>
+      <div id="availability" class="small text-center py-2"></div>
+      <button id="book" class="btn w-full py-5 text-sm tracking-[1.5px]">Confirmar reserva por WhatsApp</button>
+      <div id="confirmation" class="small text-center min-h-[1.25rem]"></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Services Section -->
-        <section id="services" class="mb-24">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold">Nuestros Servicios</h2>
-                <p class="text-gray-600 mt-2">Calidad y cuidado en cada detalle.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Cards -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg text-center reveal transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                    <i class="fas fa-hand-sparkles text-4xl gold-accent mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Manicure</h3>
-                    <p class="text-gray-600 flex-grow">Desde un esmaltado clásico hasta un tratamiento spa completo para unas manos suaves y perfectas.</p>
-                </div>
-                 <div class="bg-white p-8 rounded-2xl shadow-lg text-center reveal transform hover:-translate-y-2 transition-transform duration-300 flex flex-col" style="transition-delay: 400ms;">
-                    <i class="fas fa-shield-alt text-4xl gold-accent mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Cuidado de Uñas</h3>
-                    <p class="text-gray-600 flex-grow">Tratamientos fortalecedores y reparadores para mantener tus uñas naturales sanas y fuertes.</p>
-                </div>
-                 <div class="bg-white p-8 rounded-2xl shadow-lg text-center reveal transform hover:-translate-y-2 transition-transform duration-300 flex flex-col" style="transition-delay: 500ms;">
-                    <i class="fas fa-spa text-4xl gold-accent mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Tratamientos Spa</h3>
-                    <p class="text-gray-600 flex-grow">Exfoliación, hidratación y masajes para una experiencia de relajación y belleza total.</p>
-                </div>
-            </div>
-        </section>
+<div class="sticky-cta"><a href="#cta" class="btn">Reservar ahora</a></div>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="mb-24">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold">Galería de Inspiración</h2>
-                <p class="text-gray-600 mt-2">Trabajos reales para clientas reales.</p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="grid gap-4">
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img4.jpg" alt="Diseño de uñas 1" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img9.jpg" alt="Diseño de uñas 2" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
-                </div>
-                <div class="grid gap-4">
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img8.jpg" alt="Diseño de uñas 3" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img6.jpg" alt="Diseño de uñas 4" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
-                </div>
-                <div class="grid gap-4">
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img5.jpg" alt="Diseño de uñas 5" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img2.jpg" alt="Diseño de uñas 6" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
-                </div>
-                <div class="grid gap-4">
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img7.jpg" alt="Diseño de uñas 7" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img3.jpg" alt="Diseño de uñas 8" onerror="this.onerror=null;this.src='https://placehold.co/400x600';"></div>
-                </div>
-                <div class="grid gap-4">
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img10.jpg" ></div>
-                </div>
-                <div class="grid gap-4">
-                    <div class="reveal"><img class="h-auto max-w-full rounded-lg shadow-md" src="img/img1.jpg" alt="Diseño de uñas 7" onerror="this.onerror=null;this.src='https://placehold.co/400x400';"></div>
-                </div>
-            </div>
-        </section>
+<!-- FOOTER -->
+<footer class="bg-black text-white py-20 text-center">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-serif tracking-wider">AURA</h2>
+    <p class="mt-4 text-gray-400">Puente de Ixtla, Morelos</p>
+    <p class="mt-8 small opacity-60">Miércoles a Domingo • 19:00 – 23:00 • Solo con reservación</p>
+    <div class="mt-12 pt-12 border-t border-gray-800 text-xs tracking-widest opacity-50">
+      © 2026 AURA • Experiencia gastronómica de autor
+    </div>
+  </div>
+</footer>
 
-        <!-- Pricing, About, Testimonials, Contact Sections remain the same -->
-        <!-- Pricing Section -->
-        <section id="pricing" class="mb-24">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold">Lista de Precios</h2>
-                <p class="text-gray-600 mt-2">Transparencia y calidad en cada servicio.</p>
-            </div>
-            <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg reveal">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                    <div>
-                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Gel Semipermanente</h3>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between"><span>ㅤ• 1 y 2 Tonos.</span> <span class="font-semibold">$120</span></li>
-                            <li class="flex justify-between"><span>ㅤ• 3 y 4 Tonos.</span> <span class="font-semibold">$130</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Rubber</h3>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between"><span>ㅤ• 1 Tono (Base).</span> <span class="font-semibold">$200</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Más de un <br>ㅤtono por mano.</span><span class="font-semibold">$15</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Diseños Por Uña.</h3>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between"><span>ㅤ• Gel <br>ㅤ Semipermanente.</span> <span class="font-semibold">$190</span></li>
-                            <li class="flex justify-between"><span>ㅤ• French.</li>
-                            <li class="flex justify-between"><span>ㅤㅤㅤ- Uña Corta.</span> <span class="font-semibold">$10</span></li>
-                            <li class="flex justify-between"><span>ㅤㅤㅤ- Uña Mediana.</span> <span class="font-semibold">$15</span></li>
-                            <li class="flex justify-between"><span>ㅤㅤㅤ- Uña Larga.</span> <span class="font-semibold">$20</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Babyboomer.</span> <span class="font-semibold">$10</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Mano <br>ㅤ Alzada.</span> <span class="font-semibold">$5 en <br> adelante.</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Efecto Espejo.</span> <span class="font-semibold">$10</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Decoración.</span> <span class="font-semibold">$10</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Efecto <br>ㅤㅤ 3D.</span> <span class="font-semibold">$7 en <br> adelante.</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Acrilico.</h3>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between"><span>ㅤ• Largo 1</span> <span class="font-semibold">$190</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Largo 2</span> <span class="font-semibold">$210</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Largo 3</span> <span class="font-semibold">$230</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Largo 4</span> <span class="font-semibold">$250</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Largo 5</span> <span class="font-semibold">$270</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Soft Gel.</h3>
-                         <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between"><span>ㅤ• Tip Corto.</span> <span class="font-semibold">$160</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Tip Mediano.</span> <span class="font-semibold">$180</span></li>
-                            <li class="flex justify-between"><span>ㅤ• Tip Largo.</span> <span class="font-semibold">$200</span></li>
-                         </ul>
-                    </div>
-                    <div class="md:col-span-2">
-                        <h3 class="text-2xl font-bold border-b-2 border-[#D4AF37] pb-2 mb-4">Retiro de mi trabajo.ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ$80</h3>
-                         <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between"><span>ㅤ• Si es trabajo externo <br>ㅤㅤ tiene costo extra. <br>ㅤㅤ(Aplica en todos <br>ㅤㅤㅤ los servicios).</span></li>
-                         </ul>
-                    </div>
-                </div>
-                 <p class="text-center text-sm text-gray-500 mt-8 italic">* Todos los servicios incluyen manicura, crema hidratante y cuentan con una semana de garantía. ¡Se agenda cita sólo con anticipo!</p>
-            </div>
-        </section>
+<script>
+// =============== PRELOADER ===============
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  gsap.fromTo("#preloader h1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 });
 
-        <!-- About Section -->
-        <section id="about" class="mb-24 bg-white p-8 md:p-16 rounded-2xl shadow-lg reveal">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
-                <div class="md:col-span-1">
-                    <img src="https://placehold.co/400x400/F8E8E8/333333?text=Tu+Foto" alt="Foto de la dueña" class="rounded-full w-full max-w-[300px] mx-auto shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/400x400';">
-                </div>
-                <div class="md:col-span-2 text-center md:text-left">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Conoce a la Artista</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">¡Hola! Soy [Tu Nombre], y mi pasión es transformar tus uñas en pequeñas obras de arte. Con más de [X] años de experiencia, me dedico a ofrecer un servicio de la más alta calidad, utilizando solo los mejores productos y manteniendo los más estrictos estándares de higiene.</p>
-                    <p class="text-gray-600 leading-relaxed">Mi filosofía es simple: cada clienta es única y merece un diseño que refleje su personalidad. Me encanta escuchar tus ideas y trabajar juntas para crear algo que te haga sentir increíble. ¡Espero verte pronto!</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="mb-24">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold">Clientas Felices</h2>
-                <p class="text-gray-600 mt-2">Lo que dicen de nuestro trabajo.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg reveal">
-                    <div class="flex items-center mb-4">
-                        <img src="https://img.freepik.com/vector-premium/icono-perfil-usuario-estilo-plano-ilustracion-vector-avatar-miembro-sobre-fondo-aislado-concepto-negocio-signo-permiso-humano_157943-15752.jpg?semt=ais_incoming&w=740&q=80" alt="Cliente 1" class="w-16 h-16 rounded-full mr-4" onerror="this.onerror=null;this.src='https://placehold.co/100x100';">
-                        <div>
-                            <h4 class="font-bold text-lg">Sofía L.</h4>
-                            <div class="text-[#D4AF37]">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"¡El mejor lugar de uñas! Siempre salgo encantada con el resultado. El trato es increíble y la atención al detalle es inigualable."</p>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg reveal" style="transition-delay: 100ms;">
-                    <div class="flex items-center mb-4">
-                        <img src="https://img.freepik.com/vector-premium/icono-perfil-usuario-estilo-plano-ilustracion-vector-avatar-miembro-sobre-fondo-aislado-concepto-negocio-signo-permiso-humano_157943-15752.jpg?semt=ais_incoming&w=740&q=80" alt="Cliente 2" class="w-16 h-16 rounded-full mr-4" onerror="this.onerror=null;this.src='https://placehold.co/100x100';">
-                        <div>
-                            <h4 class="font-bold text-lg">Mariana G.</h4>
-                            <div class="text-[#D4AF37]">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"Profesionalismo y creatividad al 100%. Siempre entiende mis ideas y las mejora. Mis uñas nunca habían estado tan sanas y bonitas."</p>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg reveal" style="transition-delay: 200ms;">
-                    <div class="flex items-center mb-4">
-                        <img src="https://img.freepik.com/vector-premium/icono-perfil-usuario-estilo-plano-ilustracion-vector-avatar-miembro-sobre-fondo-aislado-concepto-negocio-signo-permiso-humano_157943-15752.jpg?semt=ais_incoming&w=740&q=80" alt="Cliente 3" class="w-16 h-16 rounded-full mr-4" onerror="this.onerror=null;this.src='https://placehold.co/100x100';">
-                        <div>
-                            <h4 class="font-bold text-lg">Valeria R.</h4>
-                            <div class="text-[#D4AF37]">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"¡Súper recomendado! El ambiente es muy relajante y el trabajo es impecable. Ya no voy a ningún otro lado."</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section id="contact" class="soft-pink-bg p-8 md:p-16 rounded-2xl reveal">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold">Agenda tu Cita</h2>
-                <p class="text-gray-600 mt-2">Rellena el formulario y te contactaré para confirmar.</p>
-            </div>
-            <form action="#" method="POST" class="max-w-xl mx-auto">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                    <input type="text" placeholder="Nombre Completo" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
-                    <input type="tel" placeholder="Teléfono / WhatsApp" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
-                </div>
-                <div class="mb-6">
-                    <select class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
-                        <option value="" disabled selected>Selecciona un servicio...</option>
-                        <option value="Gel Semipermanente">Gel Semipermanente</option>
-                        <option value="Rubber">Rubber</option>
-                        <option value="Diseños por uña">Diseño por uña</option>
-                        <option value="Acrilicos">Acrilico</option>
-                        <option value="SofGel">Soft Gel</option>
-                        <option value="Retiro">Retiro de trabajo</option>
-                    </select>
-                </div>
-                <div class="mb-6">
-                     <input type="date" class="w-full p-4 rounded-lg border border-gray-300 text-gray-800 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
-
-                </div>
-                <div class="mb-6">
-                    <input type="time" min="09:00" max="20:00" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D4AF37] focus:outline-none" required>
-                    <p class="text-sm text-gray-500 mt-1">Horario disponible: 9:00 AM - 8:00 PM</p>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="gold-bg text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg transform hover:scale-105">
-                        Enviar Solicitud
-                    </button>
-                </div>
-            </form>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
-        <div class="container mx-auto px-6 py-12 text-center">
-            <h3 class="text-3xl font-bold mb-4">F I O R I</h3>
-            <p class="mb-6">Tu dirección, Ciudad, Estado</p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="#" class="text-2xl hover:text-[#D4AF37] transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-2xl hover:text-[#D4AF37] transition-colors"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-2xl hover:text-[#D4AF37] transition-colors"><i class="fab fa-tiktok"></i></a>
-            </div>
-            <p class="text-sm text-gray-400">&copy; 2025 FIORI. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/7341368316" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform">
-        <i class="fab fa-whatsapp text-4xl"></i>
-    </a>
-
-    <script>
-        // --- Standard Page Scripts ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
-        const header = document.getElementById('header');
-        window.onscroll = function() {
-            if (window.scrollY > 50) {
-                header.classList.add('py-2');
-                header.classList.remove('py-4');
-            } else {
-                header.classList.add('py-4');
-                header.classList.remove('py-2');
-            }
-        };
-
-        // --- Contact Form Submission to WhatsApp ---
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const nombre = this.querySelector('input[type="text"]').value;
-    const telefono = this.querySelector('input[type="tel"]').value;
-    const servicio = this.querySelector('select').value;
-    const fecha = this.querySelector('input[type="date"], input[placeholder="Fecha deseada"]').value;
-    const hora = this.querySelector('input[type="time"]').value;
-
-    // Crear mensaje con emojis
-    const mensaje = `✨ ¡Hola! Quiero agendar una cita ✨\n\n` +
-                    `👤 Nombre: ${nombre}\n` +
-                    `📞 Teléfono: ${telefono}\n` +
-                    `💭 Servicio: ${servicio}\n` +
-                    `📅 Fecha: ${fecha}\n` +
-                    `⏰ Hora deseada: ${hora}\n\n` +
-                    `¡Gracias! 😊`;
-
-    // Enviar mensaje a WhatsApp
-    const url = `https://wa.me/7341368316?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
+  setTimeout(() => {
+    gsap.to(preloader, {
+      opacity: 0,
+      duration: 1.1,
+      ease: "power2.inOut",
+      onComplete: () => {
+        preloader.style.display = "none";
+        document.body.classList.remove('preloader-active');
+      }
+    });
+  }, 2200);
 });
+
+// =============== THREE.JS y GSAP (incluyendo las escenas corregidas) ===============
+let scene, camera, renderer, particlesSystem;
+let mouseX = 0, mouseY = 0;
+
+function initThree() {
+  const canvas = document.getElementById('three-bg');
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 40;
+
+  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const particleCount = window.innerWidth < 768 ? 900 : 1800;
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+  const sizes = new Float32Array(particleCount);
+
+  const colorA = new THREE.Color(0xD4C3A8);
+  const colorB = new THREE.Color(0xA38A5E);
+
+  for (let i = 0; i < particleCount * 3; i += 3) {
+    positions[i] = (Math.random() - 0.5) * 140;
+    positions[i + 1] = (Math.random() - 0.5) * 140;
+    positions[i + 2] = (Math.random() - 0.5) * 90 - 30;
+
+    const mix = Math.random();
+    const col = colorA.clone().lerp(colorB, mix);
+    colors[i] = col.r; colors[i+1] = col.g; colors[i+2] = col.b;
+    sizes[i/3] = Math.random() * 2.4 + 1.1;
+  }
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+  const material = new THREE.PointsMaterial({ size: 0.38, vertexColors: true, transparent: true, opacity: 0.68, blending: THREE.AdditiveBlending, depthTest: false });
+  particlesSystem = new THREE.Points(geometry, material);
+  scene.add(particlesSystem);
+
+  document.addEventListener('mousemove', e => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+  });
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  animateThree();
+}
+
+function animateThree() {
+  requestAnimationFrame(animateThree);
+  if (particlesSystem) {
+    particlesSystem.rotation.y += 0.00006;
+    particlesSystem.rotation.x += 0.00003;
+    particlesSystem.rotation.y += mouseX * 0.0006;
+    particlesSystem.rotation.x += mouseY * 0.0005;
+  }
+  renderer.render(scene, camera);
+}
+
+// GSAP
+gsap.registerPlugin(ScrollTrigger);
+const easeMain = "power3.out";
+
+const cursor = document.querySelector('.cursor');
+document.addEventListener('mousemove', e => gsap.to(cursor, {x: e.clientX, y: e.clientY, duration: 0.55, ease: "power2.out"}));
+
+// Hero
+gsap.from("#hero .badge", {y: 40, opacity: 0, duration: 1, ease: easeMain});
+gsap.from("#hero h1", {y: 70, opacity: 0, duration: 1.5, ease: "power4.out", delay: 0.2});
+gsap.from("#hero p", {y: 30, opacity: 0, duration: 1.2, ease: "power2.out", delay: 0.6});
+
+// Escenas (corregidas anteriormente)
+function createScene(id, imgSel, bgSel, textSel, depth = 140) {
+  const tl = gsap.timeline({
+    scrollTrigger: { trigger: id, start: "top top", end: "+=1400", scrub: 1.2, pin: true, anticipatePin: 1 }
+  });
+  tl.to(imgSel, { scale: 2.1, opacity: 0, duration: 1.2, ease: "power2.inOut" })
+    .to(bgSel, { scale: 1.25, duration: 1.2, ease: "power2.inOut" }, "-=1.1")
+    .fromTo(textSel, { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1.1, ease: "power3.out" }, "-=0.9");
+
+  gsap.to(bgSel, { y: depth, ease: "none", scrollTrigger: { trigger: id, scrub: 1.5 }});
+  gsap.to(imgSel, { y: -depth * 0.65, ease: "none", scrollTrigger: { trigger: id, scrub: 1.4 }});
+}
+
+createScene('#scene1', '#img1', '#bg1', '#text1', 140);
+createScene('#scene2', '#img2', '#bg2', '#text2', 165);
+createScene('#scene3', '#img3', '#bg3', '#text3', 190);
+
+// Animaciones generales
+gsap.from("#huerto .huerto-content > *", {
+  scrollTrigger: { trigger: "#huerto", start: "top 75%" },
+  y: 60, opacity: 0, stagger: 0.15, duration: 1.1, ease: easeMain
+});
+
+gsap.utils.toArray('.section').forEach(sec => {
+  if (['hero','scene1','scene2','scene3'].includes(sec.id)) return;
+  gsap.from(sec.querySelectorAll('h2, .badge, p, .menu-grid, .grid-2, .reservation-box, .testimonial-card'), {
+    scrollTrigger: {trigger: sec, start: "top 80%"},
+    y: 60, opacity: 0, stagger: 0.1, duration: 1.1, ease: easeMain
+  });
+});
+
+gsap.utils.toArray('.menu-card').forEach((card, i) => {
+  gsap.from(card, {
+    scrollTrigger: {trigger: card, start: "top 85%"},
+    y: 100, opacity: 0, rotation: (i % 2 ? 5 : -5), duration: 1.4, ease: "power4.out", delay: i * 0.07
+  });
+});
+
+gsap.to(".sticky-cta", {y: -6, repeat: -1, yoyo: true, duration: 2.8, ease: "sine.inOut"});
+
+// Lógica de reservas
+const TIMES = ['19:00','20:30','22:00'];
+const MAX_PER_SLOT = 20;
+
+function getStore() { try { return JSON.parse(localStorage.getItem('aura_reservas') || '{}'); } catch(e) { return {}; }}
+function setStore(data) { localStorage.setItem('aura_reservas', JSON.stringify(data)); }
+
+const dateInput = document.getElementById('date');
+const timeSelect = document.getElementById('time');
+const availability = document.getElementById('availability');
+const confirmBox = document.getElementById('confirmation');
+const bookBtn = document.getElementById('book');
+
+function renderTimes(date) {
+  timeSelect.innerHTML = '<option value="">Selecciona horario</option>';
+  const store = getStore();
+  TIMES.forEach(t => {
+    const key = `${date}_${t}`;
+    const used = store[key] || 0;
+    const left = Math.max(0, MAX_PER_SLOT - used);
+    const opt = document.createElement('option');
+    opt.value = t;
+    opt.textContent = `${t} — ${left} lugares disponibles`;
+    opt.disabled = left === 0;
+    timeSelect.appendChild(opt);
+  });
+  updateAvailability();
+}
+
+function updateAvailability() {
+  const date = dateInput.value;
+  const t = timeSelect.value;
+  if (!date || !t) { availability.textContent = ''; return; }
+  const store = getStore();
+  const key = `${date}_${t}`;
+  const left = Math.max(0, MAX_PER_SLOT - (store[key] || 0));
+  availability.textContent = left > 0 ? `Quedan ${left} lugares para las ${t}` : 'Sin disponibilidad en este horario';
+  availability.style.color = left > 0 ? '#15803d' : '#b91c1c';
+}
+
+dateInput.addEventListener('change', () => renderTimes(dateInput.value));
+timeSelect.addEventListener('change', updateAvailability);
+
+bookBtn.addEventListener('click', () => {
+  const date = dateInput.value;
+  const t = timeSelect.value;
+  if (!date || !t) { confirmBox.textContent = 'Por favor selecciona fecha y horario'; return; }
+
+  const store = getStore();
+  const key = `${date}_${t}`;
+  if ((store[key] || 0) >= MAX_PER_SLOT) {
+    confirmBox.textContent = 'Este horario ya está completo';
+    return;
+  }
+
+  store[key] = (store[key] || 0) + 1;
+  setStore(store);
+  confirmBox.style.color = '#15803d';
+  confirmBox.textContent = 'Reserva confirmada. Redirigiendo a WhatsApp...';
+
+  const msg = encodeURIComponent(`Reserva AURA: ${date} a las ${t}`);
+  setTimeout(() => window.open(`https://wa.me/5210000000000?text=${msg}`, '_blank'), 800);
+  renderTimes(date);
+});
+
+const today = new Date().toISOString().split('T')[0];
+dateInput.value = today;
+renderTimes(today);
+
+initThree();
 </script>
-
-    </script>
-
 </body>
 </html>
