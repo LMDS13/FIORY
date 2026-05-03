@@ -14,7 +14,7 @@
 
 <style>
 :root{--bg:#F5F2ED;--dark:#1C1C1C;--muted:#6B6661}
-body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden; -webkit-font-smoothing: antialiased;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden}
 
 /* PRELOADER PREMIUM */
 #preloader {
@@ -38,43 +38,174 @@ body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--da
 
 body.preloader-active { overflow: hidden; height: 100vh; }
 
-#three-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.85; backface-visibility: hidden;}
+#three-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.85}
 
-.section{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:120px 24px; transform: translateZ(0);}
-.layer{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center; will-change: transform, opacity;}
-.parallax-bg{position:absolute;width:120%;height:120%;top:-10%;left:-10%;background-size:cover;background-position:center; will-change: transform;}
-.img{width:50%;border-radius:20px;box-shadow:0 40px 80px rgba(0,0,0,.15); transform: translateZ(0);}
-.text{max-width:760px; transform: translateZ(0);}
+.section{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:120px 24px}
+.layer{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.parallax-bg{position:absolute;width:120%;height:120%;top:-10%;left:-10%;background-size:cover;background-position:center}
+.img{width:50%;border-radius:20px;box-shadow:0 40px 80px rgba(0,0,0,.15)}
+.text{max-width:760px}
 .btn{background:black;color:white;padding:14px 36px;border-radius:999px;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:.35s cubic-bezier(.16,1,.3,1)}
+.btn:hover{transform:translateY(-2px) scale(1.05)}
 .cursor{width:18px;height:18px;border:1px solid black;border-radius:50%;position:fixed;pointer-events:none;z-index:999;transform:translate(-50%,-50%);mix-blend-mode:difference}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
-.menu-card{position:relative;cursor:pointer;overflow:hidden; transform: translateZ(0);}
+.menu-card{position:relative;cursor:pointer;overflow:hidden}
 .menu-card img{border-radius:16px;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.menu-card:hover img{transform:scale(1.12)}
 .menu-overlay{position:absolute;bottom:0;left:0;width:100%;padding:22px;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);color:white;opacity:0;transform:translateY(20px);transition:.6s cubic-bezier(.16,1,.3,1)}
+.menu-card:hover .menu-overlay{opacity:1;transform:translateY(0)}
 .sticky-cta{position:fixed;bottom:28px;right:28px;z-index:999}
 .reservation-box{background:white;padding:48px 40px;border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.12);max-width:460px;width:100%}
+.badge{font-size:10px;letter-spacing:.35em;text-transform:uppercase;opacity:.6}
+.hr{height:1px;background:rgba(0,0,0,.08);margin:32px 0}
+.quote{font-style:italic; font-size: 1.15rem; line-height: 1.4;}
+.small{font-size:15px;color:#6b6661}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px}
 
 /* Sección Huerto */
 #huerto .huerto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
 #huerto .huerto-image { border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
 #huerto .huerto-content h2 { font-size: 3.2rem; line-height: 1.05; font-family: 'Playfair Display', serif; }
+#huerto .icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem; margin-top: 3rem; }
+#huerto .icon-item { text-align: center; }
+#huerto .icon-circle { width: 64px; height: 64px; background: #f5f2ed; border-radius: 9999px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
 
-/* Testimonios */
-#testimonios .testimonios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 820px; margin: 0 auto; }
-#testimonios .testimonial-card { background: white; padding: 2.25rem 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+/* Nueva sección Testimonios - Rediseñada */
+#testimonios .testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+#testimonios .testimonial-card {
+  background: white;
+  padding: 2.25rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transition: transform 0.4s ease;
+}
+#testimonios .testimonial-card:hover {
+  transform: translateY(-4px);
+}
+#testimonios .quote {
+  font-style: italic;
+  line-height: 1.45;
+  color: #1C1C1C;
+}
 
-/* Scene Text Styles */
-.text-scenes p{ color: #f9f5ef; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-.text-scenes h2{ color: #e4c593; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
-.vignette { background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)); pointer-events: none; z-index: -1; }
+@media (max-width: 900px) {
+  #huerto .huerto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section { padding: 80px 20px; }
+  .preloader-content h1 { font-size: 3.8rem; }
+}
 
+/*ESCENES*/
+.text-scenes p{
+  color: #f9f5ef;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.text-scenes h2{
+  color: #e4c593;
+  text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+}
+
+/* Capa de sombra para legibilidad */
+.vignette {
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ========== REGLAS RESPONSIVE ADICIONALES ========== */
 @media (max-width: 768px) {
-  .menu-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .img { width: 85vw; max-width: 400px; }
+  .menu-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .img {
+    width: 85vw;
+    max-width: 400px;
+  }
+  .reservation-box {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+  .sticky-cta {
+    bottom: 20px;
+    right: 20px;
+  }
+  .sticky-cta .btn {
+    padding: 12px 28px;
+    font-size: 10px;
+  }
   #scene1 #text1, #scene2 #text2, #scene3 #text3 {
-    position: absolute; bottom: 0; left: 0; width: 100%; padding: 2.5rem 1.25rem 3rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-    text-align: center; z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 1.25rem 3rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    text-align: center;
+    z-index: 2;
+  }
+  #scene1 #img1, #scene2 #img2, #scene3 #img3 {
+    z-index: 0;
+  }
+  #scene1 .vignette, #scene2 .vignette, #scene3 .vignette {
+    display: none;
+  }
+  .text-scenes h2 {
+    font-size: 2rem !important;
+  }
+  .text-scenes p {
+    font-size: 0.9rem !important;
+  }
+  #testimonios .testimonios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .section {
+    padding: 70px 16px;
+  }
+  .btn {
+    padding: 12px 24px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+  .reservation-box {
+    padding: 28px 20px;
+  }
+  .sticky-cta {
+    bottom: 16px;
+    right: 16px;
+  }
+  .sticky-cta .btn {
+    padding: 10px 20px;
+    font-size: 9px;
+  }
+  #scene1 #text1, #scene2 #text2, #scene3 #text3 {
+    padding: 2rem 1rem 2.5rem;
+  }
+  .text-scenes h2 {
+    font-size: 1.8rem !important;
+  }
+  .text-scenes p {
+    font-size: 0.85rem !important;
+  }
+  #testimonios .testimonios-grid {
+    gap: 1.5rem;
   }
 }
 </style>
@@ -82,7 +213,15 @@ body.preloader-active { overflow: hidden; height: 100vh; }
 
 <body class="preloader-active">
 
-<div id="preloader"><div class="preloader-content"><h1>AURA</h1><div class="loading-bar-container"><div class="loading-bar"></div></div></div></div>
+<div id="preloader">
+  <div class="preloader-content">
+    <h1>AURA</h1>
+    <div class="loading-bar-container">
+      <div class="loading-bar"></div>
+    </div>
+  </div>
+</div>
+
 <canvas id="three-bg"></canvas>
 <div class="cursor"></div>
 
@@ -90,23 +229,33 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   <div class="text text-center">
     <div class="badge">Una mesa, doce historias.</div>
     <h1 class="text-7xl md:text-8xl leading-none mt-4">AURA</h1>
-    <p class="mt-6 text-xl text-gray-700">En el corazón de Morelos, la cocina de autor encuentra su estado más puro.</p>
+    <p class="mt-6 text-xl text-gray-700">En el corazón de Morelos, la cocina de autor encuentra su estado más puro. Un viaje sensorial sin prisa.</p>
   </div>
 </section>
 
 <section class="section" id="scene1">
   <div class="parallax-bg" id="bg1" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400')"></div>
   <div class="layer" id="img1"><img class="img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200"></div>
-  <div class="layer" id="text1"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">El Legado de la Tierra</h2><p class="mt-4">La excelencia no se construye, se cultiva. Respetando los ciclos naturales.</p></div></div>
+  <div class="layer" id="text1"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">El Legado de la Tierra</h2><p class="mt-4">La excelencia no se construye, se cultiva. Todo comienza con la búsqueda incansable del producto en su estado más puro, respetando los ciclos naturales que dictan nuestra propuesta.</p></div></div>
 </section>
 
 <section class="section" id="huerto">
   <div class="huerto-grid">
-    <div class="huerto-image"><img src="https://images.unsplash.com/photo-1673252848144-46e11611527e?q=80&w=1170" class="w-full h-auto"></div>
+    <div class="huerto-image">
+      <img src="https://images.unsplash.com/photo-1673252848144-46e11611527e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Plantas en macetas" class="w-full h-auto">
+    </div>
     <div class="huerto-content">
       <div class="badge">Del huerto al platillo</div>
       <h2 class="mt-4">La Geografía del Sabor.</h2>
-      <p class="mt-8 text-gray-700 leading-relaxed">Entendemos el lujo como la cercanía máxima entre la tierra y el comensal.</p>
+      <div class="mt-8 space-y-6 text-gray-700 leading-relaxed">
+        <p>Entendemos el lujo como la cercanía máxima entre la tierra y el comensal. Nuestra despensa se limita a un radio de 40 kilómetros, donde cada semilla es seleccionada por su linaje y cada cosecha se realiza bajo el criterio estricto de la madurez óptima.</p>
+        <p>No buscamos ingredientes, buscamos la expresión más honesta de nuestro entorno, eliminando cualquier intermediario que pueda diluir la frescura o la historia de lo que servimos.</p>
+      </div>
+      <div class="icon-grid">
+        <div class="icon-item"><div class="icon-circle">🌱</div><p class="font-medium text-sm">Cosecha diaria</p><p class="small">Ritmos naturales. Sin mediadores.</p></div>
+        <div class="icon-item"><div class="icon-circle">🔍</div><p class="font-medium text-sm">Selección</p><p class="small">La curaduría de la tierra. Solo lo excepcional.</p></div>
+        <div class="icon-item"><div class="icon-circle">❄️</div><p class="font-medium text-sm">Preservación</p><p class="small">Pureza intacta. La esencia del producto.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -114,13 +263,109 @@ body.preloader-active { overflow: hidden; height: 100vh; }
 <section class="section" id="scene2">
   <div class="parallax-bg" id="bg2" style="background-image:url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1400')"></div>
   <div class="layer" id="img2"><img class="img" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1200"></div>
-  <div class="layer" id="text2"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">La Precisión de la Técnica.</h2><p class="mt-4">El arte de intervenir sin invadir. Rigor técnico para desnudar la esencia.</p></div></div>
+  <div class="layer" id="text2"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">La Precisión de la Técnica.</h2><p class="mt-4">El arte de intervenir sin invadir. Aplicamos rigor técnico para desnudar la esencia del producto, elevando sus virtudes naturales mediante procesos que honran la paciencia y el detalle.</p></div></div>
+</section>
+
+<section class="section" id="chef">
+  <div class="grid-2 max-w-6xl mx-auto items-center gap-16">
+    <div class="menu-card">
+      <img src="https://plus.unsplash.com/premium_photo-1687697860916-b05b982decbc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chef Mateo Rivera" class="img">
+      <div class="menu-overlay">Chef Mateo Rivera</div>
+    </div>
+    <div class="text-left">
+      <div class="badge">Dirección Gastronómica</div>
+      <h2 class="text-5xl mt-2 leading-tight">Mateo Rivera</h2>
+      <p class="mt-6 text-gray-600 leading-relaxed">Tras años de perfeccionamiento en las cocinas más influyentes del mundo, Mateo Rivera consolida en AURA una visión donde la vanguardia se rinde ante la sencillez.</p>
+      <p class="mt-6 text-gray-600 leading-relaxed">Su cocina se aleja del artificio para centrarse en la armonía compositiva y el respeto absoluto por la herencia culinaria. Para Rivera, cada menú es un estudio sobre la textura y la memoria, ejecutado con la disciplina de quien entiende que la verdadera sofisticación reside en lo esencial.</p>
+      <div class="mt-10 grid grid-cols-2 gap-8 text-sm">
+        <div><p class="font-medium">Experiencia</p><p class="small">Noma • Mugaritz • DiverXO • Pujol</p></div>
+        <div><p class="font-medium">Reconocimientos</p><p class="small">Latin America's 50 Best Restaurants • Premio Nacional de Gastronomía 2025</p></div>
+      </div>
+      <p class="quote mt-12">"La técnica es el lenguaje, pero el producto es el mensaje. Cocinamos para despertar la memoria del paladar".</p>
+      <p class="small mt-3">— Mateo Rivera</p>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="max-w-5xl mx-auto text-center">
+    <div class="badge">Intimidad Arquitectónica</div>
+    <h2 class="text-5xl mt-3">El Silencio del Anfitrión</h2>
+    <p class="mt-6 text-gray-600 max-w-2xl mx-auto">Hemos diseñado un entorno donde nada distrae de lo principal. Un refugio de minimalismo cálido concebido para preservar la privacidad de nuestros doce invitados. Cada textura del mobiliario, la iluminación dirigida y la acústica del espacio han sido curadas para fomentar una conexión ininterrumpida con la gastronomía. Aquí, el tiempo se detiene en favor de la pausa y el disfrute pausado.</p>
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1541856644905-bd40b138cbbd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-2xl"><div class="menu-overlay">Sala principal • 12 plazas</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800" class="rounded-2xl"><div class="menu-overlay">Terraza privada • Vista al huerto</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1730855793920-125667a8536d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-2xl"><div class="menu-overlay">Cava de vinos • 180 referencias</div></div>
+    </div>
+  </div>
 </section>
 
 <section class="section" id="scene3">
   <div class="parallax-bg" id="bg3" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400')"></div>
   <div class="layer" id="img3"><img class="img" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200"></div>
-  <div class="layer" id="text3"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">Estética de lo Efímero</h2><p class="mt-4">Un lenguaje propio donde cada composición busca el equilibrio perfecto.</p></div></div>
+  <div class="layer" id="text3"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">Estética de lo Efímero</h2><p class="mt-4">La última etapa de nuestra propuesta es la entrega visual y sensorial. Un lenguaje propio donde cada composición busca el equilibrio perfecto entre la forma, el aroma y el deleite.</p></div></div>
+</section>
+
+<section class="section">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="badge">Experiencia completa</div>
+    <h2 class="text-5xl mt-3">Maridaje de autor</h2>
+    <p class="mt-6 text-gray-600">Cada plato tiene su compañero perfecto, seleccionado por nuestro sommelier.</p>
+    <div class="mt-16 grid-2 gap-12 items-center">
+      <img src="https://plus.unsplash.com/premium_photo-1677327747000-2ad8ccfd288d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img rounded-3xl">
+      <div class="text-left space-y-8">
+        <div><h3 class="text-2xl">Esencia de Jamaica y Guayaba</h3><p class="small mt-2">Nuestra propuesta líquida se aleja de las convenciones para explorar la botánica local. Destaca nuestra infusión de flor de Jamaica seleccionada, clarificada y ensamblada con una reducción de guayaba de monte. Esta preparación busca el equilibrio entre la acidez vibrante y la untuosidad frutal, diseñada específicamente para limpiar el paladar y subrayar las notas terrosas de nuestros platos de temporada. Es una interpretación contemporánea de los sabores de nuestra tierra, servida a la temperatura exacta para preservar su complejidad aromática.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-[#1C1C1C] text-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="badge text-white opacity-70">Abril - Mayo 2026</div>
+      <h2 class="text-5xl mt-3">Temporada actual</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1588791174744-7e9bf4378277?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-2xl"><div class="menu-overlay">Langosta • Espárragos • Flor de calabaza</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800" class="rounded-2xl"><div class="menu-overlay">Cordero lechal • Mole negro • Hierbas silvestres</div></div>
+      <div class="menu-card"><img src="https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=800" class="rounded-2xl"><div class="menu-overlay">Chocolate Oaxaqueño • Frutos rojos • Lavanda</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="testimonios">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="badge">Experiencias reales</div>
+    <h2 class="text-4xl mt-3">Lo que dicen nuestros comensales</h2>
+    
+    <div class="testimonios-grid mt-16">
+      <div class="testimonial-card">
+        <p class="quote">"Una de las mejores experiencias gastronómicas que he tenido. Cada plato cuenta una historia y el servicio es impecable. Sin duda volveré."</p>
+        <div class="mt-8">
+          <p class="font-medium">Laura Mendoza</p>
+          <p class="small">CDMX</p>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="quote">"El equilibrio perfecto entre técnica, producto local y emoción. Una velada inolvidable. AURA redefine lo que significa cenar bien."</p>
+        <div class="mt-8">
+          <p class="font-medium">Carlos Rivera</p>
+          <p class="small">Cuernavaca</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section flex flex-col items-center">
+  <h2 class="text-5xl mb-16">Menú degustación</h2>
+  <div class="menu-grid max-w-5xl w-full">
+    <div class="menu-card"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800"><div class="menu-overlay">Filete • Trufa • Reducción</div></div>
+    <div class="menu-card"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=800"><div class="menu-overlay">Salmón • Cítricos • Hierbas</div></div>
+    <div class="menu-card"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=800"><div class="menu-overlay">Postre • Chocolate • Lavanda</div></div>
+  </div>
 </section>
 
 <section class="section" id="cta">
@@ -130,122 +375,279 @@ body.preloader-active { overflow: hidden; height: 100vh; }
       <h2 class="text-4xl mt-3">Asegure su Estancia</h2>
     </div>
     <div class="space-y-8">
-      <input id="date" type="date" class="w-full border border-gray-200 rounded-2xl px-5 py-4 outline-none bg-white">
-      <select id="time" class="w-full border border-gray-200 rounded-2xl px-5 py-4 outline-none bg-white"></select>
-      <button id="book" class="btn w-full py-5 text-sm">Confirmar reserva por WhatsApp</button>
-      <div id="confirmation" class="small text-center mt-4"></div>
+      <div>
+        <label class="block text-xs tracking-widest mb-2 text-gray-500">FECHA</label>
+        <input id="date" type="date" class="w-full border border-gray-200 focus:border-black rounded-2xl px-5 py-4 text-lg outline-none transition-colors">
+      </div>
+      <div>
+        <label class="block text-xs tracking-widest mb-2 text-gray-500">HORARIO</label>
+        <select id="time" class="w-full border border-gray-200 focus:border-black rounded-2xl px-5 py-4 text-lg outline-none transition-colors bg-white"></select>
+      </div>
+      <div id="availability" class="small text-center py-2"></div>
+      <button id="book" class="btn w-full py-5 text-sm tracking-[1.5px]">Confirmar reserva por WhatsApp</button>
+      <div id="confirmation" class="small text-center min-h-[1.25rem]"></div>
     </div>
   </div>
 </section>
 
 <div class="sticky-cta"><a href="#cta" class="btn">Reservar ahora</a></div>
 
+<footer class="bg-black text-white py-20 text-center">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-serif tracking-wider">AURA</h2>
+    <p class="mt-4 text-gray-400">Puente de Ixtla, Morelos</p>
+    <p class="mt-8 small opacity-60">Miércoles a Domingo • 19:00 – 23:00 • Solo con reservación</p>
+    <div class="mt-12 pt-12 border-t border-gray-800 text-xs tracking-widest opacity-50">
+      © 2026 AURA • Experiencia gastronómica de autor
+    </div>
+  </div>
+</footer>
+
 <script>
-// 1. CONFIGURACIÓN GSAP ULTRA-OPTIMIZADA
+// CONFIGURACIÓN GLOBAL GSAP PARA RENDIMIENTO
 gsap.registerPlugin(ScrollTrigger);
-const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 768;
+gsap.config({ force3D: true });
+ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
 
-gsap.config({ 
-    force3D: true, // Forzar uso de GPU en todas las animaciones
-    nullTargetWarn: false 
+// =============== PRELOADER ===============
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  gsap.fromTo("#preloader h1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 });
+
+  setTimeout(() => {
+    gsap.to(preloader, {
+      opacity: 0,
+      duration: 1.1,
+      ease: "power2.inOut",
+      onComplete: () => {
+        preloader.style.display = "none";
+        document.body.classList.remove('preloader-active');
+      }
+    });
+  }, 2200);
 });
 
-ScrollTrigger.config({ 
-    limitCallbacks: true, 
-    ignoreMobileResize: true,
-    syncInterval: 100 // Reduce la carga del listener de scroll
-});
-
-// 2. THREE.JS CON GESTIÓN DE RECURSOS DINÁMICA
+// =============== THREE.JS OPTIMIZADO ===============
 let scene, camera, renderer, particlesSystem;
+let mouseX = 0, mouseY = 0;
+
 function initThree() {
   const canvas = document.getElementById('three-bg');
+  const isMobile = window.innerWidth < 768;
+  
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 40;
 
   renderer = new THREE.WebGLRenderer({ 
-    canvas, alpha: true, antialias: false, // Antialias OFF para máxima velocidad
-    powerPreference: "high-performance",
-    precision: "lowp" // Baja precisión de shaders para ganar FPS en gama baja
+    canvas, 
+    alpha: true, 
+    antialias: !isMobile,
+    powerPreference: "high-performance"
   });
-  
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
+  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 
-  const particleCount = isMobile ? 300 : 1500;
+  const particleCount = isMobile ? 450 : 1800; // Reducción de partículas en móviles
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(particleCount * 3);
   const colors = new Float32Array(particleCount * 3);
-  const colorA = new THREE.Color(0xD4C3A8), colorB = new THREE.Color(0xA38A5E);
+  const sizes = new Float32Array(particleCount);
+
+  const colorA = new THREE.Color(0xD4C3A8);
+  const colorB = new THREE.Color(0xA38A5E);
 
   for (let i = 0; i < particleCount * 3; i += 3) {
     positions[i] = (Math.random() - 0.5) * 140;
     positions[i + 1] = (Math.random() - 0.5) * 140;
     positions[i + 2] = (Math.random() - 0.5) * 90 - 30;
-    const col = colorA.clone().lerp(colorB, Math.random());
+
+    const mix = Math.random();
+    const col = colorA.clone().lerp(colorB, mix);
     colors[i] = col.r; colors[i+1] = col.g; colors[i+2] = col.b;
+    sizes[i/3] = Math.random() * 2.4 + 1.1;
   }
+
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-  const material = new THREE.PointsMaterial({ size: isMobile ? 0.7 : 0.4, vertexColors: true, transparent: true, opacity: 0.5 });
+  const material = new THREE.PointsMaterial({ 
+    size: isMobile ? 0.6 : 0.38, 
+    vertexColors: true, 
+    transparent: true, 
+    opacity: 0.6, 
+    blending: THREE.AdditiveBlending, 
+    depthTest: false 
+  });
   particlesSystem = new THREE.Points(geometry, material);
   scene.add(particlesSystem);
 
-  // Render loop limitado: En móviles gama baja, bajamos a 30-45 FPS el fondo para que GSAP tenga los 60 FPS
-  let lastTime = 0;
-  const fpsLimit = isMobile ? 40 : 60;
-  function animate(time) {
-    requestAnimationFrame(animate);
-    if (time - lastTime < (1000 / fpsLimit)) return;
-    lastTime = time;
-    particlesSystem.rotation.y += 0.001;
-    renderer.render(scene, camera);
-  }
-  animate(0);
-}
-
-// 3. ANIMACIONES GSAP (PROMETIDAS A 60FPS)
-function createScene(id, imgSel, bgSel, textSel) {
-  // Scrub 0 en móvil elimina el retraso de cálculo, haciéndolo 100% fluido
-  const tl = gsap.timeline({
-    scrollTrigger: { 
-      trigger: id, start: "top top", end: "+=1000", 
-      scrub: isMobile ? 0 : 1, // El scrub 0 es instantáneo = fluido
-      pin: true, anticipatePin: 1
+  let tick = 0;
+  document.addEventListener('mousemove', e => {
+    tick++;
+    if(tick % 2 === 0) {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     }
   });
 
-  tl.to(imgSel, { scale: isMobile ? 1.3 : 2, opacity: 0, duration: 1 })
-    .to(bgSel, { scale: 1.1, duration: 1 }, "-=1")
-    .from(textSel, { opacity: 0, y: 30, duration: 0.5 }, "-=0.5");
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  animateThree();
 }
 
-// Inicialización
-window.addEventListener('load', () => {
-  initThree();
-  createScene('#scene1', '#img1', '#bg1', '#text1');
-  createScene('#scene2', '#img2', '#bg2', '#text2');
-  createScene('#scene3', '#img3', '#bg3', '#text3');
-  
-  gsap.to("#preloader", { 
-    opacity: 0, duration: 0.8, onComplete: () => {
-      document.getElementById('preloader').style.display = "none";
-      document.body.classList.remove('preloader-active');
+function animateThree() {
+  requestAnimationFrame(animateThree);
+  if (particlesSystem) {
+    particlesSystem.rotation.y += 0.00006;
+    particlesSystem.rotation.x += 0.00003;
+    particlesSystem.rotation.y += mouseX * 0.0006;
+    particlesSystem.rotation.x += mouseY * 0.0005;
+  }
+  renderer.render(scene, camera);
+}
+
+// GSAP ANIMACIONES
+const easeMain = "power3.out";
+const isMobile = window.innerWidth < 768;
+
+const cursor = document.querySelector('.cursor');
+document.addEventListener('mousemove', e => {
+    if(!isMobile) gsap.to(cursor, {x: e.clientX, y: e.clientY, duration: 0.55, ease: "power2.out"});
+});
+
+// Hero
+gsap.from("#hero .badge", {y: 40, opacity: 0, duration: 1, ease: easeMain});
+gsap.from("#hero h1", {y: 70, opacity: 0, duration: 1.5, ease: "power4.out", delay: 0.2});
+gsap.from("#hero p", {y: 30, opacity: 0, duration: 1.2, ease: "power2.out", delay: 0.6});
+
+// Escenas Optimizadas
+function createScene(id, imgSel, bgSel, textSel, depth = 140) {
+  const tl = gsap.timeline({
+    scrollTrigger: { 
+        trigger: id, 
+        start: "top top", 
+        end: "+=1200", 
+        scrub: isMobile ? 0.6 : 1.2, 
+        pin: true, 
+        anticipatePin: 1,
+        fastScrollEnd: true,
+        preventOverlaps: true
     }
+  });
+
+  gsap.set([imgSel, bgSel, textSel], { willChange: "transform, opacity" });
+
+  tl.to(imgSel, { scale: isMobile ? 1.5 : 2.1, opacity: 0, duration: 1.2, ease: "sine.inOut" })
+    .to(bgSel, { scale: 1.15, duration: 1.2, ease: "sine.inOut" }, "-=1.1")
+    .fromTo(textSel, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.9");
+
+  gsap.to(bgSel, { y: depth * 0.5, ease: "none", scrollTrigger: { trigger: id, scrub: isMobile ? 0.5 : 1.5 }});
+  gsap.to(imgSel, { y: -depth * 0.3, ease: "none", scrollTrigger: { trigger: id, scrub: isMobile ? 0.4 : 1.4 }});
+}
+
+createScene('#scene1', '#img1', '#bg1', '#text1', 140);
+createScene('#scene2', '#img2', '#bg2', '#text2', 165);
+createScene('#scene3', '#img3', '#bg3', '#text3', 190);
+
+// Animaciones generales
+gsap.from("#huerto .huerto-content > *", {
+  scrollTrigger: { trigger: "#huerto", start: "top 75%" },
+  y: 60, opacity: 0, stagger: 0.15, duration: 1.1, ease: easeMain
+});
+
+gsap.utils.toArray('.section').forEach(sec => {
+  if (['hero','scene1','scene2','scene3'].includes(sec.id)) return;
+  gsap.from(sec.querySelectorAll('h2, .badge, p, .menu-grid, .grid-2, .reservation-box, .testimonial-card'), {
+    scrollTrigger: {trigger: sec, start: "top 80%"},
+    y: 60, opacity: 0, stagger: 0.1, duration: 1.1, ease: easeMain
   });
 });
 
-// Lógica de reservas (simplificada para no interferir)
+gsap.utils.toArray('.menu-card').forEach((card, i) => {
+  gsap.from(card, {
+    scrollTrigger: {trigger: card, start: "top 85%"},
+    y: 100, opacity: 0, rotation: (isMobile ? 0 : (i % 2 ? 5 : -5)), duration: 1.4, ease: "power4.out", delay: i * 0.07
+  });
+});
+
+gsap.to(".sticky-cta", {y: -6, repeat: -1, yoyo: true, duration: 2.8, ease: "sine.inOut"});
+
+// Lógica de reservas
 const TIMES = ['19:00','20:30','22:00'];
+const MAX_PER_SLOT = 20;
+
+function getStore() { try { return JSON.parse(localStorage.getItem('aura_reservas') || '{}'); } catch(e) { return {}; }}
+function setStore(data) { localStorage.setItem('aura_reservas', JSON.stringify(data)); }
+
 const dateInput = document.getElementById('date');
 const timeSelect = document.getElementById('time');
-function renderTimes() {
-  timeSelect.innerHTML = TIMES.map(t => `<option value="${t}">${t}</option>`).join('');
+const availability = document.getElementById('availability');
+const confirmBox = document.getElementById('confirmation');
+const bookBtn = document.getElementById('book');
+
+function renderTimes(date) {
+  timeSelect.innerHTML = '<option value="">Selecciona horario</option>';
+  const store = getStore();
+  TIMES.forEach(t => {
+    const key = `${date}_${t}`;
+    const used = store[key] || 0;
+    const left = Math.max(0, MAX_PER_SLOT - used);
+    const opt = document.createElement('option');
+    opt.value = t;
+    opt.textContent = `${t} — ${left} lugares disponibles`;
+    opt.disabled = left === 0;
+    timeSelect.appendChild(opt);
+  });
+  updateAvailability();
 }
-dateInput.value = new Date().toISOString().split('T')[0];
-renderTimes();
+
+function updateAvailability() {
+  const date = dateInput.value;
+  const t = timeSelect.value;
+  if (!date || !t) { availability.textContent = ''; return; }
+  const store = getStore();
+  const key = `${date}_${t}`;
+  const left = Math.max(0, MAX_PER_SLOT - (store[key] || 0));
+  availability.textContent = left > 0 ? `Quedan ${left} lugares para las ${t}` : 'Sin disponibilidad en este horario';
+  availability.style.color = left > 0 ? '#15803d' : '#b91c1c';
+}
+
+dateInput.addEventListener('change', () => renderTimes(dateInput.value));
+timeSelect.addEventListener('change', updateAvailability);
+
+bookBtn.addEventListener('click', () => {
+  const date = dateInput.value;
+  const t = timeSelect.value;
+  if (!date || !t) { confirmBox.textContent = 'Por favor selecciona fecha y horario'; return; }
+
+  const store = getStore();
+  const key = `${date}_${t}`;
+  if ((store[key] || 0) >= MAX_PER_SLOT) {
+    confirmBox.textContent = 'Este horario ya está completo';
+    return;
+  }
+
+  store[key] = (store[key] || 0) + 1;
+  setStore(store);
+  confirmBox.style.color = '#15803d';
+  confirmBox.textContent = 'Reserva confirmada. Redirigiendo a WhatsApp...';
+
+  const msg = encodeURIComponent(`Reserva AURA: ${date} a las ${t}`);
+  setTimeout(() => window.open(`https://wa.me/5210000000000?text=${msg}`, '_blank'), 800);
+  renderTimes(date);
+});
+
+const today = new Date().toISOString().split('T')[0];
+dateInput.value = today;
+renderTimes(today);
+
+initThree();
 </script>
 </body>
 </html>
