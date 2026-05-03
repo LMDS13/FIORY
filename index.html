@@ -118,7 +118,7 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   z-index: -1;
 }
 
-/* ========== REGLAS RESPONSIVE ADICIONALES (SIN MODIFICAR LOS ESTILOS ORIGINALES) ========== */
+/* ========== REGLAS RESPONSIVE ADICIONALES ========== */
 @media (max-width: 768px) {
   .menu-grid {
     grid-template-columns: 1fr 1fr;
@@ -144,7 +144,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
     padding: 12px 28px;
     font-size: 10px;
   }
-  /* Ajustes para escenas: texto superpuesto con fondo oscuro */
   #scene1 #text1, #scene2 #text2, #scene3 #text3 {
     position: absolute;
     bottom: 0;
@@ -159,16 +158,14 @@ body.preloader-active { overflow: hidden; height: 100vh; }
     z-index: 0;
   }
   #scene1 .vignette, #scene2 .vignette, #scene3 .vignette {
-    display: none; /* Ocultamos el vignette original para no interferir */
+    display: none;
   }
-  /* Aseguramos que el texto de las escenas sea legible */
   .text-scenes h2 {
     font-size: 2rem !important;
   }
   .text-scenes p {
     font-size: 0.9rem !important;
   }
-  /* Testimonios: forzar una sola columna en móviles */
   #testimonios .testimonios-grid {
     grid-template-columns: 1fr;
   }
@@ -198,7 +195,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
     padding: 10px 20px;
     font-size: 9px;
   }
-  /* Escenas en pantallas muy pequeñas */
   #scene1 #text1, #scene2 #text2, #scene3 #text3 {
     padding: 2rem 1rem 2.5rem;
   }
@@ -208,7 +204,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   .text-scenes p {
     font-size: 0.85rem !important;
   }
-  /* Testimonios en móviles pequeños */
   #testimonios .testimonios-grid {
     gap: 1.5rem;
   }
@@ -218,7 +213,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
 
 <body class="preloader-active">
 
-<!-- PRELOADER -->
 <div id="preloader">
   <div class="preloader-content">
     <h1>AURA</h1>
@@ -231,7 +225,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
 <canvas id="three-bg"></canvas>
 <div class="cursor"></div>
 
-<!-- HERO -->
 <section class="section" id="hero">
   <div class="text text-center">
     <div class="badge">Una mesa, doce historias.</div>
@@ -240,14 +233,12 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- SCENE 1-->
 <section class="section" id="scene1">
   <div class="parallax-bg" id="bg1" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1400')"></div>
   <div class="layer" id="img1"><img class="img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200"></div>
   <div class="layer" id="text1"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">El Legado de la Tierra</h2><p class="mt-4">La excelencia no se construye, se cultiva. Todo comienza con la búsqueda incansable del producto en su estado más puro, respetando los ciclos naturales que dictan nuestra propuesta.</p></div></div>
 </section>
 
-<!-- DEL HUERTO AL PLATILLO -->
 <section class="section" id="huerto">
   <div class="huerto-grid">
     <div class="huerto-image">
@@ -269,14 +260,12 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- SCENE 2-->
 <section class="section" id="scene2">
   <div class="parallax-bg" id="bg2" style="background-image:url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1400')"></div>
   <div class="layer" id="img2"><img class="img" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1200"></div>
   <div class="layer" id="text2"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">La Precisión de la Técnica.</h2><p class="mt-4">El arte de intervenir sin invadir. Aplicamos rigor técnico para desnudar la esencia del producto, elevando sus virtudes naturales mediante procesos que honran la paciencia y el detalle.</p></div></div>
 </section>
 
-<!-- SOBRE EL CHEF -->
 <section class="section" id="chef">
   <div class="grid-2 max-w-6xl mx-auto items-center gap-16">
     <div class="menu-card">
@@ -298,7 +287,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- LA MESA -->
 <section class="section bg-white">
   <div class="max-w-5xl mx-auto text-center">
     <div class="badge">Intimidad Arquitectónica</div>
@@ -312,14 +300,12 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- SCENE 3-->
 <section class="section" id="scene3">
   <div class="parallax-bg" id="bg3" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400')"></div>
   <div class="layer" id="img3"><img class="img" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200"></div>
   <div class="layer" id="text3"><div class="layer vignette"></div><div class="text text-scenes"><h2 class="text-5xl">Estética de lo Efímero</h2><p class="mt-4">La última etapa de nuestra propuesta es la entrega visual y sensorial. Un lenguaje propio donde cada composición busca el equilibrio perfecto entre la forma, el aroma y el deleite.</p></div></div>
 </section>
 
-<!-- MARIDAJE -->
 <section class="section">
   <div class="max-w-4xl mx-auto text-center">
     <div class="badge">Experiencia completa</div>
@@ -334,7 +320,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- TEMPORADA ACTUAL -->
 <section class="section bg-[#1C1C1C] text-white">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16">
@@ -349,7 +334,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- TESTIMONIOS - NUEVO DISEÑO -->
 <section class="section" id="testimonios">
   <div class="max-w-4xl mx-auto text-center">
     <div class="badge">Experiencias reales</div>
@@ -375,7 +359,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- MENÚ -->
 <section class="section flex flex-col items-center">
   <h2 class="text-5xl mb-16">Menú degustación</h2>
   <div class="menu-grid max-w-5xl w-full">
@@ -385,7 +368,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
   </div>
 </section>
 
-<!-- RESERVAS -->
 <section class="section" id="cta">
   <div class="reservation-box">
     <div class="text-center mb-10">
@@ -410,7 +392,6 @@ body.preloader-active { overflow: hidden; height: 100vh; }
 
 <div class="sticky-cta"><a href="#cta" class="btn">Reservar ahora</a></div>
 
-<!-- FOOTER -->
 <footer class="bg-black text-white py-20 text-center">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-serif tracking-wider">AURA</h2>
@@ -423,29 +404,10 @@ body.preloader-active { overflow: hidden; height: 100vh; }
 </footer>
 
 <script>
-// =============== DETECCIÓN DE DISPOSITIVO Y RENDIMIENTO ===============
-const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
-const isLowEnd = isMobile && (navigator.hardwareConcurrency <= 4 || /Android 4|Android 5|Android 6|Android 7|Android 8/i.test(navigator.userAgent));
-
-// Reducir la tasa de frames en dispositivos débiles para liberar CPU
-if (isLowEnd) {
-  gsap.ticker.fps(24);
-}
-
-// Añadir will-change solo a elementos críticos en móviles (sin tocar CSS)
-if (isMobile) {
-  document.querySelectorAll('.scene .img, .scene .parallax-bg').forEach(el => {
-    el.style.willChange = 'transform';
-  });
-}
-
+// CONFIGURACIÓN GLOBAL GSAP PARA RENDIMIENTO
 gsap.registerPlugin(ScrollTrigger);
-
-// Optimización global de ScrollTrigger para móviles
-ScrollTrigger.config({
-  ignoreMobileResize: true,
-  autoRefreshEvents: isMobile ? "visibilitychange" : "visibilitychange,DOMContentLoaded,load,resize"
-});
+gsap.config({ force3D: true });
+ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
 
 // =============== PRELOADER ===============
 window.addEventListener('load', () => {
@@ -465,15 +427,14 @@ window.addEventListener('load', () => {
   }, 2200);
 });
 
-// =============== THREE.JS OPTIMIZADO AL MÁXIMO ===============
+// =============== THREE.JS OPTIMIZADO ===============
 let scene, camera, renderer, particlesSystem;
 let mouseX = 0, mouseY = 0;
-let threeEnabled = !isLowEnd; // Desactivar en gama muy baja para ahorrar recursos
 
 function initThree() {
-  if (!threeEnabled) return;
-  
   const canvas = document.getElementById('three-bg');
+  const isMobile = window.innerWidth < 768;
+  
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 40;
@@ -481,17 +442,17 @@ function initThree() {
   renderer = new THREE.WebGLRenderer({ 
     canvas, 
     alpha: true, 
-    antialias: false, // Desactivar antialiasing en móviles
-    powerPreference: 'low-power'
+    antialias: !isMobile,
+    powerPreference: "high-performance"
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isLowEnd ? 1 : 1.5));
+  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 
-  // Pocas partículas para dispositivos débiles
-  const particleCount = isLowEnd ? 200 : (isMobile ? 500 : 1800);
+  const particleCount = isMobile ? 450 : 1800; // Reducción de partículas en móviles
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(particleCount * 3);
   const colors = new Float32Array(particleCount * 3);
+  const sizes = new Float32Array(particleCount);
 
   const colorA = new THREE.Color(0xD4C3A8);
   const colorB = new THREE.Color(0xA38A5E);
@@ -504,31 +465,32 @@ function initThree() {
     const mix = Math.random();
     const col = colorA.clone().lerp(colorB, mix);
     colors[i] = col.r; colors[i+1] = col.g; colors[i+2] = col.b;
+    sizes[i/3] = Math.random() * 2.4 + 1.1;
   }
 
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-  // Tamaño fijo sin atributo size para ahorrar memoria
   const material = new THREE.PointsMaterial({ 
-    size: isLowEnd ? 0.6 : 0.38, 
+    size: isMobile ? 0.6 : 0.38, 
     vertexColors: true, 
     transparent: true, 
-    opacity: 0.5, // Menor opacidad para reducir blending
+    opacity: 0.6, 
     blending: THREE.AdditiveBlending, 
     depthTest: false 
   });
-  
   particlesSystem = new THREE.Points(geometry, material);
   scene.add(particlesSystem);
 
-  // Solo escuchar mousemove en escritorio
-  if (!isMobile) {
-    document.addEventListener('mousemove', e => {
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
-  }
+  let tick = 0;
+  document.addEventListener('mousemove', e => {
+    tick++;
+    if(tick % 2 === 0) {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    }
+  });
 
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -540,143 +502,83 @@ function initThree() {
 }
 
 function animateThree() {
-  if (!threeEnabled || !particlesSystem) return;
   requestAnimationFrame(animateThree);
-  
-  // Movimiento mínimo para reducir cálculos
-  particlesSystem.rotation.y += 0.00004;
-  particlesSystem.rotation.x += 0.00002;
-  if (!isMobile) {
-    particlesSystem.rotation.y += mouseX * 0.0004;
-    particlesSystem.rotation.x += mouseY * 0.0003;
+  if (particlesSystem) {
+    particlesSystem.rotation.y += 0.00006;
+    particlesSystem.rotation.x += 0.00003;
+    particlesSystem.rotation.y += mouseX * 0.0006;
+    particlesSystem.rotation.x += mouseY * 0.0005;
   }
   renderer.render(scene, camera);
 }
 
-// =============== GSAP ANIMACIONES EXTREMADAMENTE LIGERAS ===============
-const easeMain = isLowEnd ? "power1.out" : "power3.out"; // easing más simple
+// GSAP ANIMACIONES
+const easeMain = "power3.out";
+const isMobile = window.innerWidth < 768;
 
-// Cursor solo para escritorio
 const cursor = document.querySelector('.cursor');
-if (window.matchMedia('(pointer: fine)').matches) {
-  document.addEventListener('mousemove', e => gsap.to(cursor, {x: e.clientX, y: e.clientY, duration: 0.55, ease: "power2.out"}));
-}
+document.addEventListener('mousemove', e => {
+    if(!isMobile) gsap.to(cursor, {x: e.clientX, y: e.clientY, duration: 0.55, ease: "power2.out"});
+});
 
-// Hero (sin cambios)
-gsap.from("#hero .badge", {y: 40, opacity: 0, duration: isLowEnd ? 0.6 : 1, ease: easeMain});
-gsap.from("#hero h1", {y: 70, opacity: 0, duration: isLowEnd ? 0.8 : 1.5, ease: "power4.out", delay: 0.2});
-gsap.from("#hero p", {y: 30, opacity: 0, duration: isLowEnd ? 0.7 : 1.2, ease: "power2.out", delay: 0.6});
+// Hero
+gsap.from("#hero .badge", {y: 40, opacity: 0, duration: 1, ease: easeMain});
+gsap.from("#hero h1", {y: 70, opacity: 0, duration: 1.5, ease: "power4.out", delay: 0.2});
+gsap.from("#hero p", {y: 30, opacity: 0, duration: 1.2, ease: "power2.out", delay: 0.6});
 
-// Escenas: parámetros reducidos drásticamente en gama baja
+// Escenas Optimizadas
 function createScene(id, imgSel, bgSel, textSel, depth = 140) {
-  if (isLowEnd) {
-    // Versión simplificada: solo fade sin parallax
-    const tl = gsap.timeline({
-      scrollTrigger: { 
-        trigger: id, 
-        start: "top top", 
-        end: "+=600", // mucho más corto
-        scrub: 2, // scrub alto para menos actualizaciones
-        pin: false // No pin para evitar repaints
-      }
-    });
-    tl.to(imgSel, { scale: 1.3, opacity: 0, duration: 0.8, ease: "power1.inOut" })
-      .fromTo(textSel, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "power1.out" }, "-=0.6");
-    return;
-  }
-  
-  if (isMobile) {
-    // Versión móvil normal pero ligera
-    const tl = gsap.timeline({
-      scrollTrigger: { 
-        trigger: id, 
-        start: "top top", 
-        end: "+=1000", 
-        scrub: 1.5, 
-        pin: true, 
-        anticipatePin: 0.5
-      }
-    });
-    tl.to(imgSel, { scale: 1.8, opacity: 0, duration: 1, ease: "power2.inOut" })
-      .to(bgSel, { scale: 1.2, duration: 1, ease: "power2.inOut" }, "-=0.9")
-      .fromTo(textSel, { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, "-=0.8");
-    
-    gsap.to(bgSel, { y: depth * 0.5, ease: "none", scrollTrigger: { trigger: id, scrub: 1.8 }});
-    gsap.to(imgSel, { y: -depth * 0.3, ease: "none", scrollTrigger: { trigger: id, scrub: 1.8 }});
-    return;
-  }
-  
-  // Versión escritorio original
   const tl = gsap.timeline({
-    scrollTrigger: { trigger: id, start: "top top", end: "+=1400", scrub: 1.2, pin: true, anticipatePin: 1 }
+    scrollTrigger: { 
+        trigger: id, 
+        start: "top top", 
+        end: "+=1200", 
+        scrub: isMobile ? 0.6 : 1.2, 
+        pin: true, 
+        anticipatePin: 1,
+        fastScrollEnd: true,
+        preventOverlaps: true
+    }
   });
-  tl.to(imgSel, { scale: 2.1, opacity: 0, duration: 1.2, ease: "power2.inOut" })
-    .to(bgSel, { scale: 1.25, duration: 1.2, ease: "power2.inOut" }, "-=1.1")
-    .fromTo(textSel, { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1.1, ease: "power3.out" }, "-=0.9");
 
-  gsap.to(bgSel, { y: depth, ease: "none", scrollTrigger: { trigger: id, scrub: 1.5 }});
-  gsap.to(imgSel, { y: -depth * 0.65, ease: "none", scrollTrigger: { trigger: id, scrub: 1.4 }});
+  gsap.set([imgSel, bgSel, textSel], { willChange: "transform, opacity" });
+
+  tl.to(imgSel, { scale: isMobile ? 1.5 : 2.1, opacity: 0, duration: 1.2, ease: "sine.inOut" })
+    .to(bgSel, { scale: 1.15, duration: 1.2, ease: "sine.inOut" }, "-=1.1")
+    .fromTo(textSel, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.9");
+
+  gsap.to(bgSel, { y: depth * 0.5, ease: "none", scrollTrigger: { trigger: id, scrub: isMobile ? 0.5 : 1.5 }});
+  gsap.to(imgSel, { y: -depth * 0.3, ease: "none", scrollTrigger: { trigger: id, scrub: isMobile ? 0.4 : 1.4 }});
 }
 
 createScene('#scene1', '#img1', '#bg1', '#text1', 140);
 createScene('#scene2', '#img2', '#bg2', '#text2', 165);
 createScene('#scene3', '#img3', '#bg3', '#text3', 190);
 
-// Animaciones generales menos cargadas
+// Animaciones generales
 gsap.from("#huerto .huerto-content > *", {
   scrollTrigger: { trigger: "#huerto", start: "top 75%" },
-  y: 40,
-  opacity: 0,
-  stagger: isLowEnd ? 0.05 : 0.15,
-  duration: isLowEnd ? 0.6 : 1.1,
-  ease: easeMain
+  y: 60, opacity: 0, stagger: 0.15, duration: 1.1, ease: easeMain
 });
 
-// Secciones: animación simplificada
 gsap.utils.toArray('.section').forEach(sec => {
   if (['hero','scene1','scene2','scene3'].includes(sec.id)) return;
-  const targets = sec.querySelectorAll('h2, .badge, p, .menu-grid, .grid-2, .reservation-box, .testimonial-card');
-  if (targets.length === 0) return;
-  
-  gsap.from(targets, {
-    scrollTrigger: {trigger: sec, start: "top 85%"},
-    y: isLowEnd ? 20 : 60,
-    opacity: 0,
-    stagger: isLowEnd ? 0.03 : 0.1,
-    duration: isLowEnd ? 0.5 : 1.1,
-    ease: easeMain
+  gsap.from(sec.querySelectorAll('h2, .badge, p, .menu-grid, .grid-2, .reservation-box, .testimonial-card'), {
+    scrollTrigger: {trigger: sec, start: "top 80%"},
+    y: 60, opacity: 0, stagger: 0.1, duration: 1.1, ease: easeMain
   });
 });
 
-// Tarjetas: animación muy ligera en gama baja
 gsap.utils.toArray('.menu-card').forEach((card, i) => {
-  if (isLowEnd) {
-    // Solo fade sin movimiento
-    gsap.from(card, {
-      scrollTrigger: {trigger: card, start: "top 90%"},
-      opacity: 0,
-      duration: 0.5,
-      ease: "power1.out"
-    });
-  } else {
-    gsap.from(card, {
-      scrollTrigger: {trigger: card, start: "top 85%"},
-      y: isMobile ? 40 : 100,
-      opacity: 0,
-      rotation: isMobile ? 0 : (i % 2 ? 5 : -5),
-      duration: isMobile ? 0.8 : 1.4,
-      ease: "power4.out",
-      delay: isMobile ? 0 : i * 0.07
-    });
-  }
+  gsap.from(card, {
+    scrollTrigger: {trigger: card, start: "top 85%"},
+    y: 100, opacity: 0, rotation: (isMobile ? 0 : (i % 2 ? 5 : -5)), duration: 1.4, ease: "power4.out", delay: i * 0.07
+  });
 });
 
-// Sticky CTA (solo si no es gama baja)
-if (!isLowEnd) {
-  gsap.to(".sticky-cta", {y: -6, repeat: -1, yoyo: true, duration: 2.8, ease: "sine.inOut"});
-}
+gsap.to(".sticky-cta", {y: -6, repeat: -1, yoyo: true, duration: 2.8, ease: "sine.inOut"});
 
-// =============== LÓGICA DE RESERVAS (SIN CAMBIOS) ===============
+// Lógica de reservas
 const TIMES = ['19:00','20:30','22:00'];
 const MAX_PER_SLOT = 20;
 
@@ -745,8 +647,7 @@ const today = new Date().toISOString().split('T')[0];
 dateInput.value = today;
 renderTimes(today);
 
-// Iniciar Three.js con retardo
-setTimeout(initThree, 200);
+initThree();
 </script>
 </body>
 </html>
